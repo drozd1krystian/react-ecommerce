@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.scss";
 import { BsBag } from "react-icons/bs";
 
@@ -6,26 +7,28 @@ const Header = (props) => {
   return (
     <header className="header">
       <div className="logo">
-        <h2>E-commerce</h2>
+        <Link to="/">
+          <h2>E-commerce</h2>
+        </Link>
       </div>
       <ul className="links">
         <li>
-          <a href="/signin" className="btn-dark link">
+          <Link to="/registration" className="btn-light link">
             <span>Sign In</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/ref" className="btn-light link">
+          <Link to="/registration" className="btn-dark link">
             <span>Register</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/ref" className="btn-light link cart-link">
+          <Link to="/cart" className="btn-dark link cart-link">
             <span>
               <BsBag />
             </span>
             <div className="cart"></div>
-          </a>
+          </Link>
         </li>
       </ul>
     </header>

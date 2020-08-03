@@ -1,0 +1,24 @@
+@import "../../assets/variables";
+
+.form {
+  width: 50%;
+  max-width: 300px;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  input {
+    padding: 0.6rem;
+    margin: 5px 0 10px 0;
+  }
+  button {
+    border: none;
+    background: $aluxury-color;
+    padding: 0.5rem;
+    color: $secondary-color;
+    cursor: pointer;
+
+    &:hover {
+      background: darken($aluxury-color, 10%);
+    }
+  }
+}

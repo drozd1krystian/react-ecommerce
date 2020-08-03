@@ -17,6 +17,11 @@ a {
   color: inherit;
 }
 
+.main {
+  width: 100%;
+  max-width: 1450px;
+}
+
 .bg-dark {
   background: $primary-color;
   color: $secondary-color;
@@ -41,7 +46,7 @@ a {
   }
 }
 
-.btn-dark {
+.btn-light {
   @extend .btn;
   border: 1px solid $aluxury-color;
 
@@ -62,7 +67,7 @@ a {
   }
 }
 
-.btn-light {
+.btn-dark {
   @extend .btn;
   border: 1px solid $primary-color;
 

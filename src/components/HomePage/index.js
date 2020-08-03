@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.scss";
+
 import Products from "../Products/index";
 import Filters from "../Filters/index";
 

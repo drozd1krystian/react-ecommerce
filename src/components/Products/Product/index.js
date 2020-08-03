@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.scss";
 
 const Product = (props) => {
   return (
     <div className="wrapper">
-      <a href="productid">
+      <Link to={{ pathname: `/product/${1}` }}>
         <div className="card">
           <div className="photo">
             <img
@@ -17,7 +18,7 @@ const Product = (props) => {
             <span className="text-sub"> 100$</span>
           </div>
         </div>
-      </a>
+      </Link>
     </div>
   );
 };
