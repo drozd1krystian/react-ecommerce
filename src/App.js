@@ -1,16 +1,40 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-
-import "./style.scss";
+import React, { useEffect } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { auth, handleUserProfile } from "./firebase/utils";
+import { connect } from "react-redux";
+import { setCurrentUser } from "./redux/User/user.actions";
 
 // pages
-import HomePage from "./components/HomePage/index";
-import Registration from "./components/Registration/index";
+import HomePage from "./Pages/HomePage/index";
+import SignIn from "./Pages/SignIn/index";
+import Registration from "./Pages/SignUp/index";
 
 // layouts
-import MainLaout from "./layouts/MainLayout";
+import MainLayout from "./layouts/MainLayout";
+import "./style.scss";
 
-function App() {
+const App = (props) => {
+  const { setCurrentUser, currentUser } = props;
+  useEffect(() => {
+    const authListener = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await handleUserProfile(userAuth);
+        userRef.onSnapshot((snapshot) => {
+          setCurrentUser({
+            id: snapshot.id,
+            ...snapshot.data(),
+          });
+        });
+      }
+
+      setCurrentUser(userAuth);
+    });
+
+    return () => {
+      authListener();
+    };
+  }, [setCurrentUser]);
+
   return (
     <div className="App">
       <Switch>
@@ -18,23 +42,48 @@ function App() {
           exact
           path="/"
           render={() => (
-            <MainLaout>
+            <MainLayout>
               <HomePage />
-            </MainLaout>
+            </MainLayout>
           )}
         ></Route>
         <Route
           exact
-          path="/registration"
-          render={() => (
-            <MainLaout>
-              <Registration />
-            </MainLaout>
-          )}
+          path="/signin"
+          render={() =>
+            currentUser ? (
+              <Redirect to="/" />
+            ) : (
+              <MainLayout>
+                <SignIn />
+              </MainLayout>
+            )
+          }
+        ></Route>
+        <Route
+          exact
+          path="/signup"
+          render={() =>
+            currentUser ? (
+              <Redirect to="/" />
+            ) : (
+              <MainLayout>
+                <Registration />
+              </MainLayout>
+            )
+          }
         ></Route>
       </Switch>
     </div>
   );
-}
+};
 
-export default App;
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

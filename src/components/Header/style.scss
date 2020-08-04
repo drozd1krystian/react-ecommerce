@@ -55,7 +55,7 @@
     display: none;
   }
 }
-.link:hover > div {
+.cart-link:hover > div {
   max-height: 500px;
   &::before,
   &::after {
