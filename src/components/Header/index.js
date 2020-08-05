@@ -24,20 +24,20 @@ const Header = (props) => {
                 <span>
                   <FaRegUser />
                 </span>
-                <div className="data-container">
-                  <h3 className="text-center">Hello Display Name</h3>
-                  <ul className="mt1">
-                    <li>Your account</li>
-                    <li>Your orders</li>
-                  </ul>
-                  <span
-                    onClick={() => auth.signOut()}
-                    className="btn-light mt2"
-                  >
-                    <span> Logout</span>
-                  </span>
-                </div>
               </Link>
+              <div className="data-container">
+                <h3 className="text-center">Hello Display Name</h3>
+                <ul className="mt1">
+                  <li>Your account</li>
+                  <li>Your orders</li>
+                </ul>
+                <span
+                  onClick={() => auth.signOut()}
+                  className="btn-light mt2 show"
+                >
+                  <span> Logout</span>
+                </span>
+              </div>
             </div>
           </li>
           <li>
@@ -47,8 +47,8 @@ const Header = (props) => {
                   <BsBag />
                 </span>
                 <span className="item-counter">1</span>
-                <div className="data-container"></div>
               </Link>
+              <div className="data-container"></div>
             </div>
           </li>
         </ul>
@@ -61,12 +61,15 @@ const Header = (props) => {
             </Link>
           </li>
           <li>
-            <Link to="/cart" className="btn-dark link cart-link">
-              <span>
-                <BsBag />
-              </span>
+            <div className="link-wrapper">
+              <Link to="/cart" className="link">
+                <span>
+                  <BsBag />
+                </span>
+                <span className="item-counter">1</span>
+              </Link>
               <div className="data-container"></div>
-            </Link>
+            </div>
           </li>
         </ul>
       )}
