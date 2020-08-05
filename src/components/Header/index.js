@@ -1,14 +1,21 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import "./style.scss";
 import { Link } from "react-router-dom";
 import { BsBag } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
 
+import SignIn from "../../Pages/SignIn/index";
+
 import { auth } from "./../../firebase/utils";
 
 const Header = (props) => {
-  const { currentUser } = { ...props };
+  const mapState = ({ user }) => ({
+    currentUser: user.currentUser,
+  });
+
+  const { currentUser } = useSelector(mapState);
+
   return (
     <header className="header">
       <div className="logo">
@@ -16,17 +23,18 @@ const Header = (props) => {
           <h2>E-commerce</h2>
         </Link>
       </div>
-      {currentUser && (
-        <ul className="links">
-          <li>
-            <div className="link-wrapper">
-              <Link to="/profile" className="link">
-                <span>
-                  <FaRegUser />
-                </span>
-              </Link>
+
+      <ul className="links">
+        <li>
+          <div className="link-wrapper">
+            <Link to={currentUser ? "/profile" : "/signin"} className="link">
+              <span>
+                <FaRegUser />
+              </span>
+            </Link>
+            {currentUser && (
               <div className="data-container">
-                <h3 className="text-center">Hello Display Name</h3>
+                <h3 className="text-center mt2">Hello Display Name</h3>
                 <ul className="mt1">
                   <li>Your account</li>
                   <li>Your orders</li>
@@ -38,47 +46,28 @@ const Header = (props) => {
                   <span> Logout</span>
                 </span>
               </div>
-            </div>
-          </li>
-          <li>
-            <div className="link-wrapper">
-              <Link to="/cart" className="link">
-                <span>
-                  <BsBag />
-                </span>
-                <span className="item-counter">1</span>
-              </Link>
-              <div className="data-container"></div>
-            </div>
-          </li>
-        </ul>
-      )}
-      {!currentUser && (
-        <ul className="links">
-          <li>
-            <Link to="/signin" className="btn-light link">
-              <span>Sign In</span>
+            )}
+            {!currentUser && (
+              <div className="data-container">
+                <SignIn />
+              </div>
+            )}
+          </div>
+        </li>
+        <li>
+          <div className="link-wrapper">
+            <Link to="/cart" className="link">
+              <span>
+                <BsBag />
+              </span>
+              <span className="item-counter">1</span>
             </Link>
-          </li>
-          <li>
-            <div className="link-wrapper">
-              <Link to="/cart" className="link">
-                <span>
-                  <BsBag />
-                </span>
-                <span className="item-counter">1</span>
-              </Link>
-              <div className="data-container"></div>
-            </div>
-          </li>
-        </ul>
-      )}
+            <div className="data-container"></div>
+          </div>
+        </li>
+      </ul>
     </header>
   );
 };
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
-});
-
-export default connect(mapStateToProps, null)(Header);
+export default Header;

@@ -37,11 +37,22 @@
       padding: 0.1rem 0.4rem;
       transition: all 0.3s ease;
     }
+
+    &::before {
+      content: "";
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid #333;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, calc(100% + 6px));
+      display: none;
+    }
   }
 
   .data-container {
     width: 300px;
-    height: 0px;
     position: absolute;
     bottom: 0px;
     right: 0px;
@@ -50,18 +61,7 @@
     border: 1px solid $primary-color;
     border-top: none;
     display: none;
-    padding: 2rem;
-    &::before {
-      content: "";
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-bottom: 10px solid #333;
-      position: absolute;
-      top: 0;
-      right: 13px;
-      transform: translateY(-100%);
-      display: none;
-    }
+    padding: 0 2rem 2rem 2rem;
 
     &::after {
       content: "";
@@ -81,14 +81,18 @@
       }
     }
   }
-  &:hover .data-container {
-    max-height: 500px;
-    min-height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    &::before,
-    &::after {
+  &:hover {
+    .data-container {
+      max-height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      &::after {
+        display: block;
+      }
+    }
+
+    .link::before {
       display: block;
     }
   }
