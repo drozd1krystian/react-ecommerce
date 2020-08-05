@@ -18,21 +18,39 @@ const Header = (props) => {
       </div>
       {currentUser && (
         <ul className="links">
-          <li className="btn-light">
-            <span onClick={() => auth.signOut()}>Log Out</span>
+          <li>
+            <div className="link-wrapper">
+              <Link to="/profile" className="link">
+                <span>
+                  <FaRegUser />
+                </span>
+                <div className="data-container">
+                  <h3 className="text-center">Hello Display Name</h3>
+                  <ul className="mt1">
+                    <li>Your account</li>
+                    <li>Your orders</li>
+                  </ul>
+                  <span
+                    onClick={() => auth.signOut()}
+                    className="btn-light mt2"
+                  >
+                    <span> Logout</span>
+                  </span>
+                </div>
+              </Link>
+            </div>
           </li>
-          <Link to="/profile" className="btn-dark link">
-            <span>
-              <FaRegUser />
-            </span>
-            <div className="cart"></div>
-          </Link>
-          <Link to="/cart" className="btn-dark link cart-link">
-            <span>
-              <BsBag />
-            </span>
-            <div className="cart"></div>
-          </Link>
+          <li>
+            <div className="link-wrapper">
+              <Link to="/cart" className="link">
+                <span>
+                  <BsBag />
+                </span>
+                <span className="item-counter">1</span>
+                <div className="data-container"></div>
+              </Link>
+            </div>
+          </li>
         </ul>
       )}
       {!currentUser && (
@@ -47,7 +65,7 @@ const Header = (props) => {
               <span>
                 <BsBag />
               </span>
-              <div className="cart"></div>
+              <div className="data-container"></div>
             </Link>
           </li>
         </ul>

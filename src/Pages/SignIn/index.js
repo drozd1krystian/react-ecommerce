@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import FormInput from "../../components/forms/FormInput/index";
+import Error from "../../components/Error/index";
 import "./style.scss";
+
+//firebase
 import { auth } from "../../firebase/utils";
 
 const SignIn = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const resetForm = () => {
     setEmail("");
@@ -20,7 +24,7 @@ const SignIn = (props) => {
       await auth.signInWithEmailAndPassword(email, password);
       resetForm();
     } catch (err) {
-      console.log(err);
+      setErrors([err.message]);
     }
   };
 
@@ -34,6 +38,7 @@ const SignIn = (props) => {
           value={email}
           label="Email"
           handleChange={(e) => setEmail(e.target.value)}
+          required
         />
 
         <FormInput
@@ -42,6 +47,7 @@ const SignIn = (props) => {
           value={password}
           label="Password"
           handleChange={(e) => setPassword(e.target.value)}
+          required
         />
         <button type="submit">Sign In</button>
         <p className="mt1">
@@ -50,6 +56,8 @@ const SignIn = (props) => {
             Sign up.
           </Link>
         </p>
+
+        <Error errors={errors} />
       </form>
     </div>
   );

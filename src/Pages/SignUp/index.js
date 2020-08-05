@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../SignIn/style.scss";
 import { Link } from "react-router-dom";
 import FormInput from "../../components/forms/FormInput/index";
+import Error from "../../components/Error/index";
 
 //firestore
 import { auth, handleUserProfile } from "../../firebase/utils";
@@ -26,7 +27,7 @@ const SignUp = (props) => {
 
     if (password !== confirmPassword || password === "") {
       const err = ["Passwords Don't Match"];
-      setErrors([err.message]);
+      setErrors([err]);
       return;
     }
 
@@ -38,7 +39,6 @@ const SignUp = (props) => {
       await handleUserProfile(user, { displayName });
       resetForm();
     } catch (err) {
-      console.log(err);
       setErrors([err.message]);
     }
   };
@@ -48,19 +48,13 @@ const SignUp = (props) => {
       <h2 className="heading">Sign Up</h2>
 
       <form className="form" onSubmit={handleFormSubmit}>
-        {errors.length > 0 && (
-          <ul>
-            {errors.map((error, index) => {
-              return <li key={index}>{error}</li>;
-            })}
-          </ul>
-        )}
         <FormInput
           type="email"
           name="email"
           value={email}
           label="Email"
           handleChange={(e) => setEmail(e.target.value)}
+          required
         />
 
         <FormInput
@@ -69,6 +63,7 @@ const SignUp = (props) => {
           value={password}
           label="Password"
           handleChange={(e) => setPassword(e.target.value)}
+          required
         />
 
         <FormInput
@@ -77,6 +72,7 @@ const SignUp = (props) => {
           value={confirmPassword}
           label="Confirm Password"
           handleChange={(e) => setConfirmPassword(e.target.value)}
+          required
         />
         <FormInput
           type="text"
@@ -84,6 +80,7 @@ const SignUp = (props) => {
           value={displayName}
           label="Username"
           handleChange={(e) => setDisplayName(e.target.value)}
+          required
         />
 
         <button type="submit">Register</button>
@@ -93,6 +90,8 @@ const SignUp = (props) => {
             Sign in.
           </Link>
         </p>
+
+        <Error errors={errors} />
       </form>
     </div>
   );
