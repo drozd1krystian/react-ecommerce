@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
 
+// Nike Air, Jordan, LeBron, Nike Flex, Nike Free
+
 const Product = (props) => {
   return (
     <div className="wrapper">

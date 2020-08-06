@@ -3,35 +3,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import FormInput from "../../components/forms/FormInput/index";
 import Error from "../../components/Error/index";
-import { signInUser, resetAllAuthForms } from "../../redux/User/user.actions";
+import {
+  emailSignInStart,
+  resetAllAuthForms,
+} from "../../redux/User/user.actions";
 import "./style.scss";
 
 const mapState = ({ user }) => ({
-  signInSuccess: user.signInSuccess,
-  signError: user.signError,
+  currentUser: user.currentUser,
+  // signError: user.signError,
 });
 
 const SignIn = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { signInSuccess, signError } = useSelector(mapState);
+  const { currentUser } = useSelector(mapState);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    if (signInSuccess) {
-      dispatch(resetAllAuthForms);
+    if (currentUser) {
       resetForm();
       history.push("/");
     }
-  }, [signInSuccess, history, dispatch]);
+  }, [currentUser, history]);
 
-  useEffect(() => {
-    if (Array.isArray(signError) && signError.length > 0) {
-      setErrors(signError);
-    }
-  }, [signError]);
+  // useEffect(() => {
+  //   if (Array.isArray(signError) && signError.length > 0) {
+  //     setErrors(signError);
+  //   }
+  // }, [signError]);
 
   const resetForm = () => {
     setEmail("");
@@ -40,7 +42,7 @@ const SignIn = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(signInUser({ email, password }));
+    dispatch(emailSignInStart({ email, password }));
   };
 
   return (

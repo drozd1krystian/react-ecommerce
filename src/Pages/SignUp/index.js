@@ -33,7 +33,7 @@ const SignUp = (props) => {
 
   useEffect(() => {
     if (signUpSuccess) {
-      dispatch(resetAllAuthForms);
+      dispatch(resetAllAuthForms());
       resetForm();
       history.push("/");
     }

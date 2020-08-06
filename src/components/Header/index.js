@@ -1,20 +1,24 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import "./style.scss";
+
+import { useSelector, useDispatch } from "react-redux";
+import { signOutUserStart } from "../../redux/User/user.actions";
+
 import { Link } from "react-router-dom";
-import { BsBag } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
 
 import SignIn from "../../Pages/SignIn/index";
+import Cart from "../Cart/index";
 
-import { auth } from "./../../firebase/utils";
+const mapState = ({ user }) => ({
+  currentUser: user.currentUser,
+});
 
 const Header = (props) => {
-  const mapState = ({ user }) => ({
-    currentUser: user.currentUser,
-  });
-
   const { currentUser } = useSelector(mapState);
+  const dispatch = useDispatch();
+
+  const signOut = () => dispatch(signOutUserStart());
 
   return (
     <header className="header">
@@ -39,10 +43,7 @@ const Header = (props) => {
                   <li>Your account</li>
                   <li>Your orders</li>
                 </ul>
-                <span
-                  onClick={() => auth.signOut()}
-                  className="btn-light mt2 show"
-                >
+                <span onClick={() => signOut()} className="btn-light mt2 show">
                   <span> Logout</span>
                 </span>
               </div>
@@ -55,15 +56,7 @@ const Header = (props) => {
           </div>
         </li>
         <li>
-          <div className="link-wrapper">
-            <Link to="/cart" className="link">
-              <span>
-                <BsBag />
-              </span>
-              <span className="item-counter">1</span>
-            </Link>
-            <div className="data-container"></div>
-          </div>
+          <Cart />
         </li>
       </ul>
     </header>
