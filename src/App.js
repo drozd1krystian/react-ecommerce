@@ -7,6 +7,7 @@ import { checkUserSession } from "./redux/User/user.actions";
 import HomePage from "./Pages/HomePage/index";
 import SignIn from "./Pages/SignIn/index";
 import SignUp from "./Pages/SignUp/index";
+import ProductDetails from "./Pages/ProductDetails";
 
 // layouts
 import MainLayout from "./layouts/MainLayout";
@@ -28,6 +29,15 @@ const App = (props) => {
           render={() => (
             <MainLayout>
               <HomePage />
+            </MainLayout>
+          )}
+        ></Route>
+        <Route
+          exact
+          path="/product/:productId"
+          render={() => (
+            <MainLayout>
+              <ProductDetails />
             </MainLayout>
           )}
         ></Route>

@@ -42,3 +42,26 @@ export const getCurrentUser = () => {
     }, reject);
   });
 };
+
+export const addProducts = (arr) => {
+  const batch = firestore.batch();
+
+  let sizes = [39, 40, 41, 42, 43, 44, 45, 46];
+
+  arr.forEach((doc) => {
+    doc.sizes = [];
+    let count = Math.floor(Math.random() * sizes.length);
+    for (let i = 0; i < count; i++) {
+      let x = Math.floor(Math.random() * sizes.length);
+      if (doc.sizes.some((el) => parseInt(el) === sizes[x])) {
+        i--;
+        continue;
+      }
+      doc.sizes.push(sizes[x]);
+    }
+    doc.sizes.sort();
+    let docRef = firestore.collection("products").doc();
+    batch.set(docRef, doc);
+  });
+  batch.commit();
+};

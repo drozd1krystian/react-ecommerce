@@ -2,25 +2,20 @@ import React from "react";
 import "./style.scss";
 import Product from "../../../components/Product/index";
 
-const Porducts = (props) => {
+//import { addProducts } from "../../../firebase/utils";
+import pro from "../../../assets/nike20.json";
+
+const Products = (props) => {
   return (
     <div className="products-container">
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
+      {/* <div>
+        <button onClick={() => addProducts(pro)}>Add</button>
+      </div> */}
+      {pro.map((el, index) => {
+        return <Product key={index} product={el}></Product>;
+      })}
     </div>
   );
 };
 
-export default Porducts;
+export default Products;

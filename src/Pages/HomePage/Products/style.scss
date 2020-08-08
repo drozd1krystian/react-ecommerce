@@ -1,5 +1,12 @@
 .products-container {
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  padding: 0 48px;
+}
+
+@media screen and (max-width: 1024px) {
+  .products-container {
+    padding: 0;
+  }
 }
