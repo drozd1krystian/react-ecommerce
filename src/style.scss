@@ -64,6 +64,12 @@ a {
   }
 }
 
+button {
+  border: none;
+  background: none;
+  outline: none;
+}
+
 .btn-light {
   @extend .btn;
   border: 1px solid $aluxury-color;
@@ -98,6 +104,10 @@ a {
   margin-top: 2rem;
 }
 
+.mb2 {
+  margin-bottom: 2rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -108,4 +118,8 @@ a {
 
 .p1 {
   padding: 1rem;
+}
+
+.py2 {
+  padding: 2rem 0;
 }
