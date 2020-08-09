@@ -1,3 +1,5 @@
+@import "../../assets/variables";
+
 .images {
   width: 70%;
   padding: 2rem 2rem;
@@ -12,7 +14,7 @@
   }
 }
 
-.product-details {
+.product-description {
   padding: 2rem 2rem 0 3rem;
   width: 30%;
   display: flex;
@@ -64,4 +66,20 @@
 
 button {
   font-size: 1.5rem;
+}
+
+.similiar-products {
+  display: flex;
+  position: relative;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #333;
+  }
+  .wrapper {
+    min-width: 25%;
+  }
 }
