@@ -1,5 +1,4 @@
 import userTypes from "./user.types";
-import { auth, handleUserProfile } from "../../firebase/utils";
 
 export const emailSignInStart = (userCredentials) => ({
   type: userTypes.EMAIL_SIGN_IN_START,
@@ -22,6 +21,18 @@ export const signOutUserStart = () => ({
 export const signOutUserSuccess = () => ({
   type: userTypes.SIGN_OUT_USER_SUCCESS,
 });
+
+export const signUpUserStart = (userCredentials) => ({
+  type: userTypes.SIGN_UP_USER_START,
+  payload: userCredentials,
+});
+
+export const userError = (err) => ({
+  type: userTypes.USER_ERROR,
+  payload: err,
+});
+
+///
 
 export const setCurrentUser = (user) => ({
   type: userTypes.SET_CURRENT_USER,
@@ -52,27 +63,4 @@ export const signUpUser = ({
   password,
   confirmPassword,
   displayName,
-}) => async (dispatch) => {
-  if (password !== confirmPassword || password === "") {
-    const err = "Passwords Don't Match";
-    dispatch({
-      type: userTypes.SIGN_ERROR,
-      payload: [err],
-    });
-    return;
-  }
-
-  try {
-    const { user } = await auth.createUserWithEmailAndPassword(email, password);
-    await handleUserProfile(user, { displayName });
-    dispatch({
-      type: userTypes.SIGN_UP_SUCCESS,
-      payload: true,
-    });
-  } catch (err) {
-    dispatch({
-      type: userTypes.SIGN_ERROR,
-      payload: [err.message],
-    });
-  }
-};
+}) => async (dispatch) => {};

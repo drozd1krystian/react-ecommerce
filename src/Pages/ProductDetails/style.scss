@@ -40,7 +40,7 @@
       cursor: pointer;
     }
     input[type="radio"]:checked + label {
-      border: 1px solid #333;
+      border: 1px solid $primary-color;
     }
     label {
       position: absolute;
@@ -50,7 +50,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: -1;
-      border: 1px solid #eee;
+      border: 1px solid lighten($primary-color, 60%);
       border-radius: 5px;
 
       span {
@@ -94,7 +94,8 @@ button {
   .btn-right {
     padding: 1rem 1.2rem;
     border-radius: 50%;
-    background: #fff;
+    background: $aluxury-color;
+    color: $secondary-color;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

@@ -1,5 +1,6 @@
+@import "../../assets/variables";
 .footer {
   margin: 0 auto;
   padding: 1rem;
-  border-top: 1px solid #333;
+  border-top: 1px solid $primary-color;
 }

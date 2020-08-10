@@ -3,21 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import FormInput from "../../components/forms/FormInput/index";
 import Error from "../../components/Error/index";
-import {
-  emailSignInStart,
-  resetAllAuthForms,
-} from "../../redux/User/user.actions";
+import { emailSignInStart } from "../../redux/User/user.actions";
 import "./style.scss";
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
-  // signError: user.signError,
+  userErrors: user.userErrors,
 });
 
 const SignIn = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { currentUser } = useSelector(mapState);
+  const { currentUser, userErrors } = useSelector(mapState);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -29,11 +26,11 @@ const SignIn = (props) => {
     }
   }, [currentUser, history]);
 
-  // useEffect(() => {
-  //   if (Array.isArray(signError) && signError.length > 0) {
-  //     setErrors(signError);
-  //   }
-  // }, [signError]);
+  useEffect(() => {
+    if (Array.isArray(userErrors) && userErrors.length > 0) {
+      setErrors(userErrors);
+    }
+  }, [userErrors]);
 
   const resetForm = () => {
     setEmail("");

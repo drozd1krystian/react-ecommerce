@@ -1,11 +1,14 @@
 import userTypes from "./user.types";
 import { takeLatest, call, all, put } from "redux-saga/effects";
-import { signInSuccess, signOutUserSuccess } from "./user.actions";
+import { signInSuccess, signOutUserSuccess, userError } from "./user.actions";
 import { auth, handleUserProfile, getCurrentUser } from "../../firebase/utils";
 
-export function* getSnapshotFromUserAuth(user) {
+export function* getSnapshotFromUserAuth(user, additionalData) {
   try {
-    const userRef = yield call(handleUserProfile, { userAuth: user });
+    const userRef = yield call(handleUserProfile, {
+      userAuth: user,
+      additionalData,
+    });
     const snapshot = yield userRef.get();
     yield put(
       signInSuccess({
@@ -23,10 +26,7 @@ export function* emailSignIn({ payload: { email, password } }) {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshotFromUserAuth(user);
   } catch (err) {
-    // dispatch({
-    //   type: userTypes.SIGN_ERROR,
-    //   payload: [err.message],
-    // });
+    yield put(userError([err.message]));
   }
 }
 
@@ -61,10 +61,33 @@ export function* onSignOutUserStart() {
   yield takeLatest(userTypes.SIGN_OUT_USER_START, signOutUser);
 }
 
+export function* signUpUser({
+  payload: { displayName, email, password, confirmPassword },
+}) {
+  if (password !== confirmPassword || password === "") {
+    const err = "Passwords Don't Match";
+    yield put(userError([err]));
+    return;
+  }
+
+  try {
+    const { user } = yield auth.createUserWithEmailAndPassword(email, password);
+    const additionalData = { displayName };
+    yield getSnapshotFromUserAuth(user, additionalData);
+  } catch (err) {
+    yield put(userError([err.message]));
+  }
+}
+
+export function* onSignUpUserStart() {
+  yield takeLatest(userTypes.SIGN_UP_USER_START, signUpUser);
+}
+
 export default function* userSagas() {
   yield all([
     call(onEmailSignInStart),
     call(onCheckUserSession),
     call(onSignOutUserStart),
+    call(onSignUpUserStart),
   ]);
 }
