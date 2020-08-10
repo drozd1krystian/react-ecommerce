@@ -2,9 +2,9 @@ import React from "react";
 import "./style.scss";
 import Product from "../../../components/Product/index";
 
-import { addProducts } from "../../../firebase/utils";
+// import { addProducts } from "../../../firebase/utils";
 import pro from "../../../assets/nike20.json";
-import all from "../../../assets/nike_data.json";
+// import all from "../../../assets/nike_data.json";
 
 const Products = (props) => {
   return (
