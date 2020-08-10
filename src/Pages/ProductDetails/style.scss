@@ -116,7 +116,7 @@ button {
   }
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1279px) {
   .content {
     flex-direction: column;
     .images {
@@ -138,7 +138,7 @@ button {
       -webkit-appearance: initial;
     }
     .wrapper {
-      min-width: 70%;
+      min-width: 30%;
       padding: 0 4px 0 4px;
     }
   }
@@ -148,12 +148,8 @@ button {
   }
 }
 
-@media screen and (min-width: 1024px) {
-  .content {
-    flex-direction: column;
-    .images,
-    .product-description {
-      width: 100%;
-    }
+@media screen and (max-width: 767px) {
+  .similiar-products .wrapper {
+    min-width: 70%;
   }
 }
