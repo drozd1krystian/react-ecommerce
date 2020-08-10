@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./style.scss";
 
 import { useParams } from "react-router-dom";
@@ -13,7 +13,8 @@ import Product from "../../components/Product/index";
 const ProductDetails = (props) => {
   // let { productId } = useParams();
 
-  let product = pro[0];
+  const product = pro[0];
+  const scroller = useRef(null);
 
   const getFiveRandomProducts = () => {
     let arr = [];
@@ -23,24 +24,15 @@ const ProductDetails = (props) => {
     return arr.map((el) => pro[el]);
   };
 
-  const scrollLeft = () => {
-    let walk = document.querySelector(".wrapper").offsetWidth;
-    const container = document.querySelector(".similiar-products");
-    if (container.style.left === 0) return;
-
-    container.scrollBy({
-      left: -walk,
+  const scrollRight = () => {
+    scroller.current.scrollBy({
+      left: Math.floor(scroller.current.offsetWidth * 23 * 0.01),
       behavior: "smooth",
     });
   };
-
-  const scrollRight = () => {
-    let walk = document.querySelector(".wrapper").offsetWidth;
-    const container = document.querySelector(".similiar-products");
-    if (container.style.right === container.offsetLeft + container.offsetWidth)
-      return;
-    container.scrollBy({
-      left: walk,
+  const scrollLeft = () => {
+    scroller.current.scrollBy({
+      left: -Math.floor(scroller.current.offsetWidth * 23 * 0.01),
       behavior: "smooth",
     });
   };
@@ -78,7 +70,7 @@ const ProductDetails = (props) => {
       </div>
       <h3 className="p1">Similiar products</h3>
       <div className="wrap">
-        <div className="similiar-products">
+        <div className="similiar-products" ref={scroller}>
           {getFiveRandomProducts().map((el, index) => {
             return <Product key={`similar-${index}`} product={el} />;
           })}

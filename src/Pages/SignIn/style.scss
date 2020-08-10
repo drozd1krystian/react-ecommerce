@@ -6,7 +6,8 @@
   margin: 0 auto;
   flex-direction: column;
   padding-bottom: 2rem;
-
+  z-index: 100;
+  position: relative;
   button {
     border: none;
     background: $aluxury-color;
