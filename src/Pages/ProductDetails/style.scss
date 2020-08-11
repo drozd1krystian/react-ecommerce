@@ -154,3 +154,18 @@ button {
     min-width: 70%;
   }
 }
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .similiar-products .wrapper {
+    min-width: 30%;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+  .content .images {
+    flex-wrap: wrap;
+  }
+  .content .images .img {
+    width: 50%;
+    min-width: 50%;
+  }
+}
