@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./style.scss";
 
 import { BsBag } from "react-icons/bs";
@@ -7,19 +7,28 @@ import { useSelector } from "react-redux";
 
 const mapState = ({ cart }) => ({
   cart: cart.cart,
-  count: cart.count,
+  loading: cart.loading,
 });
 
 const Cart = (props) => {
-  const { cart, count } = useSelector(mapState);
+  const { cart, loading } = useSelector(mapState);
+  const cartDiv = useRef(null);
+
+  useEffect(() => {
+    const divClassList = cartDiv.current.classList;
+    if (loading.isLoading) {
+      divClassList.add("show");
+    }
+    return () => divClassList.remove("show");
+  }, [loading]);
 
   return (
-    <div className="link-wrapper">
+    <div className="link-wrapper" ref={cartDiv}>
       <Link to="/cart" className="link">
         <span>
           <BsBag />
         </span>
-        <span className="item-counter">{count}</span>
+        <span className="item-counter">{cart.length}</span>
       </Link>
       <div className="data-container">
         <h2 className="p1 text-center">Basket</h2>

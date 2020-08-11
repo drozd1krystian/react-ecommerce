@@ -1,0 +1,19 @@
+@media screen and (max-width: 1024px) {
+  .data-container {
+    width: 100%;
+    opacity: 0;
+  }
+}
+
+.show {
+  .data-container {
+    display: block;
+    opacity: 1;
+    &::after {
+      display: block;
+    }
+  }
+  .link::before {
+    display: block;
+  }
+}

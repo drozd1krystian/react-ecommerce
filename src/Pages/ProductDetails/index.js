@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./style.scss";
 
 import { useParams } from "react-router-dom";
@@ -21,6 +21,7 @@ const ProductDetails = (props) => {
   const dispatch = useDispatch();
   const [size, setSize] = useState(null);
   const [errors, setErrors] = useState([]);
+  const [similiarProducts, setSimiliarProducts] = useState([]);
 
   const handleRadioInput = (e) => {
     const { value } = e.target;
@@ -47,12 +48,16 @@ const ProductDetails = (props) => {
     setErrors([]);
   };
 
+  useEffect(() => {
+    getFiveRandomProducts();
+  }, []);
+
   const getFiveRandomProducts = () => {
     let arr = [];
     for (let i = 0; i < 7; i++) {
       arr.push(Math.floor(Math.random() * pro.length));
     }
-    return arr.map((el) => pro[el]);
+    setSimiliarProducts(arr.map((el) => pro[el]));
   };
 
   const scrollRight = () => {
@@ -93,7 +98,7 @@ const ProductDetails = (props) => {
                   value={el}
                   name="size"
                   id={`size-${el}`}
-                  onChange={handleRadioInput}
+                  onClick={handleRadioInput}
                 />
                 <label htmlFor={`size-${el}`}>
                   <span>EU {el}</span>
@@ -101,7 +106,7 @@ const ProductDetails = (props) => {
               </div>
             ))}
           </div>
-          <button className="btn-light" onClick={() => handleAddProduct()}>
+          <button className="btn-light" onClick={handleAddProduct}>
             <span>Add to cart</span>
           </button>
         </div>
@@ -109,14 +114,14 @@ const ProductDetails = (props) => {
       <h3 className="p1">Similiar products</h3>
       <div className="wrap">
         <div className="similiar-products" ref={scroller}>
-          {getFiveRandomProducts().map((el, index) => {
+          {similiarProducts.map((el, index) => {
             return <Product key={`similar-${index}`} product={el} />;
           })}
         </div>
-        <div className="btn-left" onClick={() => scrollLeft()}>
+        <div className="btn-left" onClick={scrollLeft}>
           <AiOutlineLeft />
         </div>
-        <div className="btn-right" onClick={() => scrollRight()}>
+        <div className="btn-right" onClick={scrollRight}>
           <AiOutlineRight />
         </div>
       </div>

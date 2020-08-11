@@ -3,6 +3,8 @@ const cartTypes = {
   REMOVE_PRODUCT: "REMOVE_PRODUCT",
   INCREASE_AMOUNT: "INCREASE_AMOUNT",
   IS_IN_CART: "IS_IN_CART",
+  SHOW_CART: "SHOW_CART",
+  HIDE_CART: "HIDE_CART",
 };
 
 export default cartTypes;
