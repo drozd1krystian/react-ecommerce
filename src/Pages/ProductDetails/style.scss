@@ -26,12 +26,14 @@
 }
 
 .sizes {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+  flex-wrap: wrap;
   .size {
-    width: 33%;
+    width: 100%;
     position: relative;
     height: 50px;
-    margin: 5px;
 
     input[type="radio"] {
       width: 100%;

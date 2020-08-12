@@ -44,7 +44,7 @@ const SignIn = (props) => {
 
   return (
     <div className="wrap">
-      <h2 className="heading">Sign In</h2>
+      <h2 className="p1 text-center mb1 small-header">Sign In</h2>
       <form className="form" onSubmit={handleSubmit}>
         <FormInput
           type="email"

@@ -31,12 +31,16 @@ const Cart = (props) => {
         </span>
         <span className="item-counter">{cart.length}</span>
       </Link>
-      <div className="data-container">
-        <h2 className="p1 text-center small-header">Basket</h2>
-        {cart.map((el, index) => (
-          <CartItem product={el} key={`cartItem-${index}`} />
-        ))}
-      </div>
+      {cart.length > 0 && (
+        <div className="data-container">
+          <h2 className="p1 text-center small-header">Basket</h2>
+          <div className="cart-items">
+            {cart.map((el, index) => (
+              <CartItem product={el} key={`cartItem-${index}`} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

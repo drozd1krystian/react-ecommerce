@@ -8,6 +8,7 @@ import HomePage from "./Pages/HomePage/index";
 import SignIn from "./Pages/SignIn/index";
 import SignUp from "./Pages/SignUp/index";
 import ProductDetails from "./Pages/ProductDetails";
+import CartPage from "./Pages/CartPage";
 
 // layouts
 import MainLayout from "./layouts/MainLayout";
@@ -56,6 +57,15 @@ const App = (props) => {
           render={() => (
             <MainLayout>
               <SignUp />
+            </MainLayout>
+          )}
+        ></Route>
+        <Route
+          exact
+          path="/cart"
+          render={() => (
+            <MainLayout>
+              <CartPage />
             </MainLayout>
           )}
         ></Route>

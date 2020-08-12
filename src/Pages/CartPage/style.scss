@@ -1,0 +1,63 @@
+@import "../../assets/variables";
+.content {
+  .summary,
+  .cart-items {
+    padding: 1rem 2rem;
+    h2 {
+      border-bottom: 1px solid $primary-color;
+    }
+  }
+  .cart-items {
+    width: 70%;
+    img {
+      max-width: 150px;
+      height: 150px;
+    }
+    .description {
+      width: 70%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  .summary {
+    width: 30%;
+    order: 1;
+    .field {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.3rem 0;
+      font-size: 0.9rem;
+    }
+    .summary-total {
+      border-top: 1px solid #333;
+      padding: 1rem 0;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+  justify-content: center;
+  img {
+    max-width: 300px;
+    display: inline-block;
+    margin: 0 auto;
+  }
+  h1 {
+    padding: 1rem 0;
+  }
+  a {
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .content .summary {
+    order: -1;
+  }
+}

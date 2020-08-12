@@ -25,5 +25,19 @@
         margin-top: 0;
       }
     }
+    .amount-input {
+      display: flex;
+      padding: 0.5rem 0;
+      align-items: center;
+      input {
+        width: 50%;
+        text-align: center;
+      }
+      span {
+        padding: 0 0.5rem;
+        background: #333;
+        color: #fff;
+      }
+    }
   }
 }
