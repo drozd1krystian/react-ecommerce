@@ -1,0 +1,29 @@
+.cart-item {
+  display: flex;
+  margin-top: 10px;
+  border-bottom: 1px solid #333;
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+  .photo {
+    width: 30%;
+    .img {
+      width: 100%;
+      max-height: 200px;
+    }
+  }
+  .description {
+    margin-left: 10px;
+    p {
+      margin-top: 10px;
+      font-size: 12px;
+      padding-right: 10px;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}

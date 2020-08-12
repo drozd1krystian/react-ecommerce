@@ -59,9 +59,11 @@
     transform: translateY(100%);
     background: $secondary-color;
     border: 1px solid $primary-color;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     border-top: none;
     display: none;
-    padding: 0 2rem 2rem 2rem;
+    overflow: auto;
 
     &::after {
       content: "";

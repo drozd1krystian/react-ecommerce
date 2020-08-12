@@ -4,6 +4,7 @@ import "./style.scss";
 import { BsBag } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import CartItem from "../CartItem";
 
 const mapState = ({ cart }) => ({
   cart: cart.cart,
@@ -31,11 +32,9 @@ const Cart = (props) => {
         <span className="item-counter">{cart.length}</span>
       </Link>
       <div className="data-container">
-        <h2 className="p1 text-center">Basket</h2>
+        <h2 className="p1 text-center small-header">Basket</h2>
         {cart.map((el, index) => (
-          <h3 key={index}>
-            {el.productName} | {el.amount}
-          </h3>
+          <CartItem product={el} key={`cartItem-${index}`} />
         ))}
       </div>
     </div>

@@ -38,7 +38,9 @@ const Header = (props) => {
             </Link>
             {currentUser && (
               <div className="data-container">
-                <h3 className="text-center mt2">Hello Display Name</h3>
+                <h3 className="text-center mt2 small-header">
+                  Hello Display Name
+                </h3>
                 <ul className="mt1">
                   <li>Your account</li>
                   <li>Your orders</li>
