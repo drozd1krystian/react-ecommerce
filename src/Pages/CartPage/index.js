@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import emptyCart from "../../assets/emptyCart.png";
 
-import CartItem from "../../components/CartItem";
+import FullCartItem from "../../components/FullCartItem";
 import { Link } from "react-router-dom";
 
 const mapState = ({ cart }) => ({
@@ -23,7 +23,7 @@ const CartPage = (props) => {
         .reduce((acc, el) => acc + el);
       setCartValue(value);
     }
-  });
+  }, [setCartValue, cart]);
   return (
     <div>
       {cart.length > 0 && (
@@ -31,7 +31,7 @@ const CartPage = (props) => {
           <div className="cart-items">
             <h2 className=" text-center p1">Cart</h2>
             {cart.map((item, index) => (
-              <CartItem product={item} key={`item-${index}`} />
+              <FullCartItem product={item} key={`item-${index}`} />
             ))}
           </div>
           <div className="summary">
@@ -48,7 +48,7 @@ const CartPage = (props) => {
                 </div>
                 <div className="field summary-total">
                   <span>Total</span>
-                  <span>{(cartValue + 8.99, 2).toFixed(2)} $</span>
+                  <span>{(cartValue + 8.99).toFixed(2)} $</span>
                 </div>
               </div>
             </div>
