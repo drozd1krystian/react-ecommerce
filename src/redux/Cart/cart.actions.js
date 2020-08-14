@@ -11,12 +11,17 @@ export const addProductToCart = (product) => (dispatch) => {
   }, 2000);
 };
 
-export const removeProductFromCart = (productId) => ({
+export const removeProduct = (index) => ({
   type: cartTypes.REMOVE_PRODUCT,
-  payload: productId,
+  payload: index,
 });
 
-export const inscreaseAmount = (productId) => ({
+export const inscreaseAmount = (index) => ({
   type: cartTypes.INCREASE_AMOUNT,
-  payload: productId,
+  payload: index,
+});
+
+export const decreaseAmount = (index) => ({
+  type: cartTypes.DECREASE_AMOUNT,
+  payload: index,
 });

@@ -2,10 +2,31 @@ import React from "react";
 import "./style.scss";
 
 import { FiTrash2 } from "react-icons/fi";
-import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import FormInput from "../forms/FormInput";
+import { BsPlus } from "react-icons/bs";
+import { FiMinus } from "react-icons/fi";
 
-const FullCartItem = ({ product }) => {
+import {
+  inscreaseAmount,
+  decreaseAmount,
+  removeProduct,
+} from "../../redux/Cart/cart.actions";
+import { useDispatch } from "react-redux";
+
+const FullCartItem = ({ product, index, ...otherProps }) => {
+  const dispatch = useDispatch();
+
+  const handleAmountIncrease = () => {
+    dispatch(inscreaseAmount(index));
+  };
+
+  const handleAmountDecrease = () => {
+    dispatch(decreaseAmount(index));
+  };
+
+  const handleRemoveProduct = () => {
+    dispatch(removeProduct(index));
+  };
+
   return (
     <div className="p1 full-cart-item">
       <div className="photo">
@@ -16,9 +37,9 @@ const FullCartItem = ({ product }) => {
         />
       </div>
       <div className="full-cart-description">
-        <span>{product.productName}</span>
-        <span>Size: {product.size}</span>
-        <span className="icon">
+        <p>{product.productName}</p>
+        <p>Size: {product.size}</p>
+        <span className="icon" onClick={handleRemoveProduct}>
           <FiTrash2 />
         </span>
       </div>
@@ -27,12 +48,12 @@ const FullCartItem = ({ product }) => {
           <p>{product.salePrice}$</p>
         </div>
         <div className="change-amount">
-          <span>
-            <AiOutlineMinus />
+          <span onClick={handleAmountDecrease}>
+            <FiMinus />
           </span>
           <div>{product.amount}</div>
-          <span>
-            <AiOutlinePlus />
+          <span onClick={handleAmountIncrease}>
+            <BsPlus />
           </span>
         </div>
         <div>

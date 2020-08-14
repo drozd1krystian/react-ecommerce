@@ -22,7 +22,7 @@
   }
   .summary {
     width: 30%;
-    order: 1;
+    order: -1;
     .field {
       display: flex;
       justify-content: space-between;
@@ -60,4 +60,19 @@
   .content .summary {
     order: -1;
   }
+}
+
+.my-node-enter {
+  opacity: 0;
+}
+.my-node-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.my-node-exit {
+  opacity: 1;
+}
+.my-node-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
 }

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { CSSTransition } from "react-transition-group";
+
 import "./style.scss";
+
 import { useSelector } from "react-redux";
-
 import emptyCart from "../../assets/emptyCart.png";
-
 import FullCartItem from "../../components/FullCartItem";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 
 const mapState = ({ cart }) => ({
   cart: cart.cart,
@@ -13,8 +15,9 @@ const mapState = ({ cart }) => ({
 
 const CartPage = (props) => {
   const { cart } = useSelector(mapState);
-
   const [cartValue, setCartValue] = useState(null);
+
+  const nodeRef = useRef(null);
 
   useEffect(() => {
     if (cart.length > 0) {
@@ -30,9 +33,17 @@ const CartPage = (props) => {
         <div className="content">
           <div className="cart-items">
             <h2 className=" text-center p1">Cart</h2>
-            {cart.map((item, index) => (
-              <FullCartItem product={item} key={`item-${index}`} />
-            ))}
+            <CSSTransition in={true} timeout={200} classNames="my-node">
+              <div>
+                {cart.map((item, index) => (
+                  <FullCartItem
+                    product={item}
+                    key={`item-${index}`}
+                    index={index}
+                  />
+                ))}
+              </div>
+            </CSSTransition>
           </div>
           <div className="summary">
             <h2 className=" p1 text-center">Summary</h2>
@@ -40,7 +51,7 @@ const CartPage = (props) => {
               <div className="summary-desc p1">
                 <div className="field">
                   <span>Order value: </span>
-                  <span>{cartValue}$</span>
+                  <span>{(cartValue + 0.000001).toFixed(2)}$</span>
                 </div>
                 <div className="field">
                   <span>Delivery</span>
