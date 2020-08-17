@@ -1,0 +1,35 @@
+@import "../../assets/variables";
+.loading-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #eee;
+  z-index: 200000;
+  opacity: 0.4;
+  .loading-thumb {
+    position: absolute;
+    height: 30px;
+    width: 200px;
+    border: 1px solid $primary-color;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .loading-bar {
+      width: 0%;
+      height: 100%;
+      background: $aluxury-color;
+      animation: fillIn 1s ease;
+    }
+  }
+
+  @keyframes fillIn {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+}

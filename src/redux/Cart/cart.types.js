@@ -5,6 +5,8 @@ const cartTypes = {
   DECREASE_AMOUNT: "DECREASE_AMOUNT",
   SHOW_CART: "SHOW_CART",
   HIDE_CART: "HIDE_CART",
+  SHOW_LOADING: "SHOW_LOADING",
+  HIDE_LOADING: "HIDE_LOADING",
 };
 
 export default cartTypes;

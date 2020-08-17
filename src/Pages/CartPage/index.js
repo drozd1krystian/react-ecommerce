@@ -6,16 +6,28 @@ import "./style.scss";
 import { useSelector } from "react-redux";
 import emptyCart from "../../assets/emptyCart.png";
 import FullCartItem from "../../components/FullCartItem";
+import LoadingScreen from "../../components/LoadingScreen";
+
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 
 const mapState = ({ cart }) => ({
   cart: cart.cart,
+  loadingScreen: cart.loadingScreen,
 });
 
 const CartPage = (props) => {
   const { cart } = useSelector(mapState);
   const [cartValue, setCartValue] = useState(null);
+  const { loadingScreen } = useSelector(mapState);
+  const [showLoadingScreen, setShowLoadingScreen] = useState(null);
+
+  useEffect(() => {
+    if (loadingScreen.isLoading) setShowLoadingScreen(true);
+    return () => {
+      setShowLoadingScreen(false);
+    };
+  }, [loadingScreen.isLoading, showLoadingScreen]);
 
   const nodeRef = useRef(null);
 
@@ -29,6 +41,8 @@ const CartPage = (props) => {
   }, [setCartValue, cart]);
   return (
     <div>
+      {showLoadingScreen && <LoadingScreen />}
+
       {cart.length > 0 && (
         <div className="content">
           <div className="cart-items">

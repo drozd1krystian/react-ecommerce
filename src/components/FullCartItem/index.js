@@ -20,7 +20,7 @@ const FullCartItem = ({ product, index, ...otherProps }) => {
   };
 
   const handleAmountDecrease = () => {
-    dispatch(decreaseAmount(index));
+    if (product.amount > 1) dispatch(decreaseAmount(index));
   };
 
   const handleRemoveProduct = () => {
@@ -29,19 +29,21 @@ const FullCartItem = ({ product, index, ...otherProps }) => {
 
   return (
     <div className="p1 full-cart-item">
-      <div className="photo">
-        <img
-          src={product.images[0]}
-          alt={product.productName}
-          className="img"
-        />
-      </div>
-      <div className="full-cart-description">
-        <p>{product.productName}</p>
-        <p>Size: {product.size}</p>
-        <span className="icon" onClick={handleRemoveProduct}>
-          <FiTrash2 />
-        </span>
+      <div className="item-desc ">
+        <div className="photo">
+          <img
+            src={product.images[0]}
+            alt={product.productName}
+            className="img"
+          />
+        </div>
+        <div className="item-info">
+          <p>{product.productName}</p>
+          <p>Size: {product.size}</p>
+          <span className="icon" onClick={handleRemoveProduct}>
+            <FiTrash2 />
+          </span>
+        </div>
       </div>
       <div className="item-total">
         <div>
@@ -51,13 +53,15 @@ const FullCartItem = ({ product, index, ...otherProps }) => {
           <span onClick={handleAmountDecrease}>
             <FiMinus />
           </span>
-          <div>{product.amount}</div>
+          <span className="item-amount">{product.amount}</span>
           <span onClick={handleAmountIncrease}>
             <BsPlus />
           </span>
         </div>
         <div>
-          <p>Total: {(product.salePrice * product.amount).toFixed(2)}$</p>
+          <p className="text-bold ">
+            Total: {(product.salePrice * product.amount).toFixed(2)}$
+          </p>
         </div>
       </div>
     </div>

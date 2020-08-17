@@ -50,6 +50,10 @@ const INITIAL_STATE = {
     isLoading: false,
     duration: 0,
   },
+  loadingScreen: {
+    isLoading: false,
+    duratio: 0,
+  },
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -82,9 +86,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cart: state.cart.map((el, index) =>
-          index === action.payload && el.amount > 1
-            ? { ...el, amount: el.amount - 1 }
-            : el
+          index === action.payload ? { ...el, amount: el.amount - 1 } : el
         ),
       };
     }
@@ -111,6 +113,26 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: {
           ...state.loading,
+          isLoading: false,
+          duration: action.payload,
+        },
+      };
+    }
+
+    case cartTypes.SHOW_LOADING: {
+      return {
+        ...state,
+        loadingScreen: {
+          isLoading: true,
+          duration: action.payload,
+        },
+      };
+    }
+
+    case cartTypes.HIDE_LOADING: {
+      return {
+        ...state,
+        loadingScreen: {
           isLoading: false,
           duration: action.payload,
         },

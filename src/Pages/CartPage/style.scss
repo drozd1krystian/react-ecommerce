@@ -22,7 +22,6 @@
   }
   .summary {
     width: 30%;
-    order: -1;
     .field {
       display: flex;
       justify-content: space-between;
@@ -59,6 +58,13 @@
 @media screen and (max-width: 1024px) {
   .content .summary {
     order: -1;
+  }
+
+  .content {
+    .summary,
+    .cart-items {
+      width: 100%;
+    }
   }
 }
 
