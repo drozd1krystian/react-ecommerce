@@ -1,7 +1,7 @@
 @import "../../assets/variables";
 
 .form {
-  max-width: 300px;
+  max-width: 400px;
   display: flex;
   margin: 0 auto;
   flex-direction: column;
@@ -9,17 +9,6 @@
   z-index: 100;
   position: relative;
   padding: 0 1rem 2rem 1rem;
-  button {
-    border: none;
-    background: $aluxury-color;
-    padding: 0.5rem;
-    color: $secondary-color;
-    cursor: pointer;
-
-    &:hover {
-      background: darken($aluxury-color, 10%);
-    }
-  }
 }
 
 .decoration {

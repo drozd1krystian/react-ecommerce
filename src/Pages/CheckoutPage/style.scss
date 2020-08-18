@@ -1,0 +1,135 @@
+@import "../../assets/variables";
+
+.column {
+  padding: 1rem 2rem;
+}
+
+.steps {
+  display: flex;
+  width: 100%;
+  padding: 2rem 1rem;
+  align-items: center;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .icon {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: $primary-color;
+      border-radius: 50%;
+      color: $secondary-color;
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+    p {
+      padding: 0.5rem 0;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+  }
+
+  .current .icon {
+    background: lighten($aluxury-color, 0%);
+  }
+
+  .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    position: relative;
+    top: -10px;
+    .line {
+      width: 150px;
+      height: 1px;
+      background: lighten($primary-color, 60%);
+    }
+    svg {
+      color: lighten($primary-color, 60%);
+    }
+  }
+}
+
+.wrap {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  .section-name {
+    margin: 30px 0 20px 10px;
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+}
+
+.billing {
+  padding: 2rem 0;
+  width: 100%;
+  max-width: 600px;
+  .input-wrapper {
+    display: flex;
+    div:first-child {
+      flex-basis: 55%;
+      margin-right: 10px;
+    }
+    div {
+      width: 100%;
+    }
+  }
+}
+
+.details-wrapper {
+  display: flex;
+}
+
+.checkout-summary {
+  margin: 118px 0 0 30px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  .section-name {
+    margin: 30px 30px 0 30px;
+  }
+  .summary-items {
+    margin: 10px 30px;
+  }
+
+  .checkout-total {
+    border-top: 1px solid #333;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    span {
+      margin-left: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .steps {
+    .step,
+    .arrow {
+      display: none;
+    }
+    .current {
+      display: block;
+    }
+  }
+  .details-wrapper .wrap:nth-child(2) {
+    display: none;
+  }
+
+  .details-wrapper .billing {
+    margin-left: 0;
+  }
+  .cart-summary {
+    display: none;
+  }
+}

@@ -9,6 +9,7 @@ import {
   resetAllAuthForms,
   signUpUserStart,
 } from "../../redux/User/user.actions";
+import Button from "../../components/forms/Button";
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -94,7 +95,7 @@ const SignUp = (props) => {
           required
         />
 
-        <button type="submit">Register</button>
+        <Button>Sign Up</Button>
         <p className="mt1">
           Already have an account?{" "}
           <Link to="/signin" className="decoration">

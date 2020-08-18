@@ -3,5 +3,10 @@
     padding: 0.6rem;
     margin: 12px 1px 12px 1px;
     width: 100%;
+    border: 1px solid #333;
+    border-radius: 2px;
+  }
+  label {
+    color: lighten(#333, 20%);
   }
 }

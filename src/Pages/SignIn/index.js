@@ -5,6 +5,7 @@ import FormInput from "../../components/forms/FormInput/index";
 import Error from "../../components/Error/index";
 import { emailSignInStart } from "../../redux/User/user.actions";
 import "./style.scss";
+import Button from "../../components/forms/Button";
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -44,7 +45,7 @@ const SignIn = (props) => {
 
   return (
     <div className="wrap">
-      <h2 className="p1 text-center mb1 small-header">Sign In</h2>
+      <h2 className="p1 text-center mb1">Sign In</h2>
       <form className="form" onSubmit={handleSubmit}>
         <FormInput
           type="email"
@@ -63,7 +64,7 @@ const SignIn = (props) => {
           handleChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Sign In</button>
+        <Button>Sign In</Button>
         <p className="mt1">
           Don't have an account?{" "}
           <Link to="/signup" className="decoration">

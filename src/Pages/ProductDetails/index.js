@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import "./style.scss";
 
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { AiOutlineLeft } from "react-icons/ai";
 import { AiOutlineRight } from "react-icons/ai";
@@ -14,10 +14,6 @@ import Product from "../../components/Product/index";
 import Error from "../../components/Error/index";
 import LoadingScreen from "../../components/LoadingScreen";
 
-const mapState = ({ cart }) => ({
-  loadingScreen: cart.loadingScreen,
-});
-
 const ProductDetails = (props) => {
   // let { productId } = useParams();
 
@@ -27,8 +23,6 @@ const ProductDetails = (props) => {
   const [size, setSize] = useState(null);
   const [errors, setErrors] = useState([]);
   const [similiarProducts, setSimiliarProducts] = useState([]);
-  const [showLoadingScreen, setShowLoadingScreen] = useState(null);
-  const { loadingScreen } = useSelector(mapState);
 
   const handleRadioInput = (e) => {
     const { value } = e.target;
@@ -59,13 +53,6 @@ const ProductDetails = (props) => {
     getFiveRandomProducts();
   }, []);
 
-  useEffect(() => {
-    if (loadingScreen.isLoading) setShowLoadingScreen(true);
-    return () => {
-      setShowLoadingScreen(false);
-    };
-  }, [loadingScreen.isLoading, showLoadingScreen]);
-
   const getFiveRandomProducts = () => {
     let arr = [];
     for (let i = 0; i < 7; i++) {
@@ -89,7 +76,7 @@ const ProductDetails = (props) => {
 
   return (
     <div>
-      {showLoadingScreen && <LoadingScreen />}
+      <LoadingScreen />
 
       <div className="content">
         <div className="images">
@@ -128,7 +115,7 @@ const ProductDetails = (props) => {
         </div>
       </div>
       <h3 className="p1">Similiar products</h3>
-      <div className="wrap">
+      <div className="similiar-wrap">
         <div className="similiar-products" ref={scroller}>
           {similiarProducts.map((el, index) => {
             return <Product key={`similar-${index}`} product={el} />;

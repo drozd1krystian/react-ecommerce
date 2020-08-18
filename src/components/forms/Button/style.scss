@@ -1,0 +1,16 @@
+@import "../../../assets/variables";
+
+.submit {
+  border: none;
+  background: $primary-color;
+  padding: 1rem 0.5rem;
+  color: $secondary-color;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.2rem;
+  transition: 0.3s ease all;
+  margin-top: 20px;
+  &:hover {
+    background: $aluxury-color;
+  }
+}

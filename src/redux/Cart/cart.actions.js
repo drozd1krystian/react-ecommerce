@@ -50,3 +50,16 @@ export const decreaseAmount = (index) => (dispatch) => {
     dispatch({ type: cartTypes.HIDE_LOADING, payload: 0 });
   }, 1000);
 };
+
+export const checkOut = () => (dispatch) => {
+  dispatch({ type: cartTypes.SHOW_LOADING, payload: 1000 });
+  setTimeout(() => {
+    dispatch({ type: cartTypes.HIDE_LOADING, payload: 0 });
+  }, 1001);
+
+  setTimeout(() => {
+    dispatch({
+      type: cartTypes.CHECK_OUT,
+    });
+  }, 1000);
+};

@@ -5,6 +5,7 @@ import { BsBag } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CartItem from "../CartItem";
+import Button from "../forms/Button";
 
 const mapState = ({ cart }) => ({
   cart: cart.cart,
@@ -24,9 +25,10 @@ const Cart = (props) => {
     return () => divClassList.remove("show");
   }, [loading]);
 
-  const cartQuantity = cart
-    .map((el) => el.amount)
-    .reduce((acc, current) => acc + current);
+  const cartQuantity =
+    cart.length > 0
+      ? cart.map((el) => el.amount).reduce((acc, current) => acc + current)
+      : 0;
 
   return (
     <div className="link-wrapper" ref={cartDiv}>
@@ -44,6 +46,10 @@ const Cart = (props) => {
               <CartItem product={el} key={`cartItem-${index}`} />
             ))}
           </div>
+
+          <Link to="/checkout">
+            <Button>Check Out</Button>
+          </Link>
         </div>
       )}
     </div>

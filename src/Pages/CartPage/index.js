@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { CSSTransition } from "react-transition-group";
 
 import "./style.scss";
 
@@ -9,27 +8,15 @@ import FullCartItem from "../../components/FullCartItem";
 import LoadingScreen from "../../components/LoadingScreen";
 
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import Button from "../../components/forms/Button";
 
 const mapState = ({ cart }) => ({
   cart: cart.cart,
-  loadingScreen: cart.loadingScreen,
 });
 
 const CartPage = (props) => {
   const { cart } = useSelector(mapState);
   const [cartValue, setCartValue] = useState(null);
-  const { loadingScreen } = useSelector(mapState);
-  const [showLoadingScreen, setShowLoadingScreen] = useState(null);
-
-  useEffect(() => {
-    if (loadingScreen.isLoading) setShowLoadingScreen(true);
-    return () => {
-      setShowLoadingScreen(false);
-    };
-  }, [loadingScreen.isLoading, showLoadingScreen]);
-
-  const nodeRef = useRef(null);
 
   useEffect(() => {
     if (cart.length > 0) {
@@ -39,25 +26,23 @@ const CartPage = (props) => {
       setCartValue(value);
     }
   }, [setCartValue, cart]);
+
   return (
     <div>
-      {showLoadingScreen && <LoadingScreen />}
+      <LoadingScreen />
 
       {cart.length > 0 && (
         <div className="content">
           <div className="cart-items">
             <h2 className=" text-center p1">Cart</h2>
-            <CSSTransition in={true} timeout={200} classNames="my-node">
-              <div>
-                {cart.map((item, index) => (
-                  <FullCartItem
-                    product={item}
-                    key={`item-${index}`}
-                    index={index}
-                  />
-                ))}
-              </div>
-            </CSSTransition>
+
+            {cart.map((item, index) => (
+              <FullCartItem
+                product={item}
+                key={`item-${index}`}
+                index={index}
+              />
+            ))}
           </div>
           <div className="summary">
             <h2 className=" p1 text-center">Summary</h2>
@@ -77,6 +62,9 @@ const CartPage = (props) => {
                 </div>
               </div>
             </div>
+            <Link to="/checkout">
+              <Button>Check Out</Button>
+            </Link>
           </div>
         </div>
       )}

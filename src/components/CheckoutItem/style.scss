@@ -1,0 +1,17 @@
+.checkout-item {
+  border-bottom: 1px solid #333;
+  margin: 10px 0;
+  padding: 10px 0;
+  &:last-child {
+    border-bottom: none;
+  }
+  .product-name,
+  .size {
+    margin: 10px 0;
+  }
+  .product-name {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+  }
+}

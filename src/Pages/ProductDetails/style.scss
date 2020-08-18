@@ -91,7 +91,8 @@ button {
   }
 }
 
-.wrap {
+.similiar-wrap {
+  position: relative;
   .btn-left,
   .btn-right {
     padding: 1rem 1.2rem;
@@ -145,8 +146,8 @@ button {
       padding: 0 4px 0 4px;
     }
   }
-  .wrap .btn-left,
-  .wrap .btn-right {
+  .similiar-wrap .btn-left,
+  .similiar-wrap .btn-right {
     display: none;
   }
 }
