@@ -24,7 +24,13 @@ const CheckoutPage = (props) => {
   const { cart } = useSelector(mapState);
   const history = useHistory();
   const dispatch = useDispatch();
-  const [payment, setPayment] = useState();
+  const [payment, setPayment] = useState("creditCard");
+
+  const [email, setEmail] = useState(null);
+  const [name, setName] = useState(null);
+  const [address, setAddress] = useState(null);
+  const [postCode, setPostCode] = useState(null);
+  const [city, setCity] = useState(null);
 
   const cartTotal =
     cart.length > 0
@@ -35,11 +41,13 @@ const CheckoutPage = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(checkOut());
-    console.log(payment);
-    setTimeout(() => {
-      history.push("/");
-    }, 2000);
+    if (payment) {
+      dispatch(checkOut());
+      console.log(payment);
+      setTimeout(() => {
+        history.push("/");
+      }, 2000);
+    }
   };
 
   const handleRadioInput = (e) => {
@@ -88,31 +96,61 @@ const CheckoutPage = (props) => {
       <div className="details-wrapper">
         <form className="wrap billing" onSubmit={handleSubmit}>
           <h3 className="section-name">Billing Details</h3>
-          <FormInput label="First & last mame" required />
-          <FormInput label="Email" required type="email" />
-          <FormInput label="Address" required />
+          <FormInput
+            label="First & Last Name"
+            value={name}
+            handleChange={(e) => setName(e.target.value)}
+            required
+            placeHolder=" "
+          />
+          <FormInput
+            label="Email"
+            required
+            type="email"
+            value={email}
+            handleChange={(e) => setEmail(e.target.value)}
+            placeHolder=" "
+          />
+          <FormInput
+            label="Address"
+            required
+            value={address}
+            handleChange={(e) => setAddress(e.target.value)}
+            placeHolder=" "
+          />
           <div className="input-wrapper">
-            <FormInput label="Postal Code" required pattern="[0-9]*" />
-            <FormInput label="City" required />
+            <FormInput
+              label="Postal Code"
+              required
+              pattern="[0-9]*"
+              value={postCode}
+              handleChange={(e) => setPostCode(e.target.value)}
+              placeHolder=" "
+            />
+            <FormInput
+              label="City"
+              required
+              value={city}
+              handleChange={(e) => setCity(e.target.value)}
+              placeHolder=" "
+            />
           </div>
 
           <h3 className="section-name">Payment Method</h3>
           <PaymentInput
             label="Credit Card"
             id="creditCard"
-            required
             handleChange={handleRadioInput}
+            defaultChecked
           />
           <PaymentInput
             label="Paypal"
             id="paypal"
-            required
             handleChange={handleRadioInput}
           />
           <PaymentInput
             label="Bank Transfer"
             id="bankTransfer"
-            required
             handleChange={handleRadioInput}
           />
 

@@ -3,9 +3,17 @@
     padding: 0.6rem;
     margin: 12px 1px 12px 1px;
     width: 100%;
-    border: 1px solid #333;
+    border: 2px solid #333;
     border-radius: 2px;
+
+    &:not(:placeholder-shown) {
+      border-color: lightgreen;
+    }
+    &:invalid:not(:placeholder-shown) {
+      border-color: red;
+    }
   }
+
   label {
     color: lighten(#333, 20%);
   }

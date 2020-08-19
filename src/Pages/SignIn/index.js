@@ -53,6 +53,7 @@ const SignIn = (props) => {
           value={email}
           label="Email"
           handleChange={(e) => setEmail(e.target.value)}
+          placeholder=" "
           required
         />
 
@@ -62,6 +63,7 @@ const SignIn = (props) => {
           value={password}
           label="Password"
           handleChange={(e) => setPassword(e.target.value)}
+          placeholder=" "
           required
         />
         <Button>Sign In</Button>

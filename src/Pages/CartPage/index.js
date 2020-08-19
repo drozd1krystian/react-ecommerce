@@ -16,14 +16,14 @@ const mapState = ({ cart }) => ({
 
 const CartPage = (props) => {
   const { cart } = useSelector(mapState);
-  const [cartValue, setCartValue] = useState(null);
+  const [cartValue, setCartValue] = useState(0);
 
   useEffect(() => {
     if (cart.length > 0) {
       const value = cart
         .map((item) => item.salePrice * item.amount)
         .reduce((acc, el) => acc + el);
-      setCartValue(value);
+      setCartValue(value || 0);
     }
   }, [setCartValue, cart]);
 
@@ -53,12 +53,12 @@ const CartPage = (props) => {
                   <span>{(cartValue + 0.000001).toFixed(2)}$</span>
                 </div>
                 <div className="field">
-                  <span>Delivery</span>
-                  <span>8.99$</span>
+                  <span>Shipping</span>
+                  <span>Free</span>
                 </div>
                 <div className="field summary-total">
                   <span>Total</span>
-                  <span>{(cartValue + 8.99).toFixed(2)} $</span>
+                  <span>{cartValue.toFixed(2)} $</span>
                 </div>
               </div>
             </div>

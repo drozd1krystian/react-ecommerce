@@ -24,6 +24,9 @@ const SignUp = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [address, setAddress] = useState("");
+  const [postCode, setPostCode] = useState("");
+  const [city, setCity] = useState("");
   const [errors, setErrors] = useState([]);
 
   const resetForm = () => {
@@ -67,6 +70,7 @@ const SignUp = (props) => {
           label="Email"
           handleChange={(e) => setEmail(e.target.value)}
           required
+          placeHolder=" "
         />
 
         <FormInput
@@ -76,6 +80,7 @@ const SignUp = (props) => {
           label="Password"
           handleChange={(e) => setPassword(e.target.value)}
           required
+          placeHolder=" "
         />
 
         <FormInput
@@ -85,15 +90,41 @@ const SignUp = (props) => {
           label="Confirm Password"
           handleChange={(e) => setConfirmPassword(e.target.value)}
           required
+          placeHolder=" "
         />
         <FormInput
           type="text"
-          name="displayName"
+          name="name"
           value={displayName}
-          label="Username"
+          label="First & Last Name"
           handleChange={(e) => setDisplayName(e.target.value)}
           required
+          placeHolder=" "
         />
+        <FormInput
+          label="Address"
+          required
+          value={address}
+          handleChange={(e) => setAddress(e.target.value)}
+          placeHolder=" "
+        />
+        <div className="input-wrapper">
+          <FormInput
+            label="Postal Code"
+            required
+            pattern="[0-9]*"
+            value={postCode}
+            handleChange={(e) => setPostCode(e.target.value)}
+            placeHolder=" "
+          />
+          <FormInput
+            label="City"
+            required
+            value={city}
+            handleChange={(e) => setCity(e.target.value)}
+            placeHolder=" "
+          />
+        </div>
 
         <Button>Sign Up</Button>
         <p className="mt1">

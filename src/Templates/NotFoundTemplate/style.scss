@@ -1,0 +1,17 @@
+.big-header {
+  font-size: 6rem;
+}
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 140px);
+  align-items: center;
+  justify-content: center;
+  .submit {
+    width: 50%;
+  }
+  .info {
+    font-size: 1.5rem;
+  }
+}

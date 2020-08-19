@@ -43,6 +43,21 @@ export const getCurrentUser = () => {
   });
 };
 
+export const getProducts = () => {
+  return new Promise((resolve, reject) => {
+    const products = [];
+    firestore
+      .collection("products")
+      .limit(5)
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((el) => products.push(el.data()));
+        resolve(products);
+      })
+      .catch((e) => reject(e.message));
+  });
+};
+
 export const addProducts = (arr) => {
   let sizes = [39, 40, 41, 42, 43, 44, 45, 46];
   const pushBatch = (arr) => {
@@ -64,6 +79,7 @@ export const addProducts = (arr) => {
       );
       delete doc.lastVisited;
       doc.sizes.sort();
+      if (doc.images.length < 1) return;
       if (doc.productName.includes("Nike Air")) doc.brand = "Nike Air";
       else if (doc.productName.includes("Jordan")) doc.brand = "Jordan";
       else if (doc.productName.includes("Nike Free")) doc.brand = "Nike Free";

@@ -13,7 +13,7 @@ const PaymentInput = ({ label, handleChange, id, ...otherProps }) => {
         value={id}
         onClick={handleChange}
       />
-      <label for={id}>{label}</label>
+      <label htmlFor={id}>{label}</label>
     </div>
   );
 };
