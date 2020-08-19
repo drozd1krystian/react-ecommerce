@@ -2,11 +2,23 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding: 0 48px;
+  padding: 0 48px 50px 0;
+  position: relative;
+
+  .submit {
+    width: 40%;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 @media screen and (max-width: 1024px) {
   .products-container {
-    padding: 0;
+    padding: 0 0 80px 0;
+    .submit {
+      width: 60%;
+    }
   }
 }

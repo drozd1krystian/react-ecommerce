@@ -3,11 +3,10 @@ import { takeLatest, call, all, put } from "redux-saga/effects";
 import { getProducts } from "../../firebase/utils";
 import { fetchProductsSuccess } from "./products.actions";
 
-export function* fetchProducts() {
+export function* fetchProducts({ payload: { start, limit } }) {
   try {
-    const products = yield getProducts();
-    console.log(products);
-    yield put(fetchProductsSuccess(products));
+    const data = yield getProducts(start, limit);
+    yield put(fetchProductsSuccess(data));
   } catch (e) {
     console.log(e);
   }

@@ -4,6 +4,7 @@ import Product from "../../../components/Product/index";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchProductsStart } from "../../../redux/Products/products.actions";
+import Button from "../../../components/forms/Button";
 
 // import { addProducts } from "../../../firebase/utils";
 
@@ -11,14 +12,23 @@ import { fetchProductsStart } from "../../../redux/Products/products.actions";
 
 const mapState = ({ products }) => ({
   products: products.products,
+  pagination: products.pagination,
 });
 
 const Products = (props) => {
-  const { products } = useSelector(mapState);
+  const { products, pagination } = useSelector(mapState);
   const dispatch = useDispatch();
+  const { start, limit } = pagination;
+
+  const loadMoreProducts = () => {
+    dispatch(fetchProductsStart({ start, limit }));
+  };
+
   useEffect(() => {
-    dispatch(fetchProductsStart());
-  }, [dispatch]);
+    if (products.length === 0)
+      dispatch(fetchProductsStart({ start: 0, limit: 20 }));
+  }, [dispatch, products]);
+
   return (
     <div className="products-container">
       {/* <div>
@@ -27,6 +37,7 @@ const Products = (props) => {
       {products.map((el, index) => {
         return <Product key={index} product={el}></Product>;
       })}
+      <Button onClick={loadMoreProducts}>Load More</Button>
     </div>
   );
 };

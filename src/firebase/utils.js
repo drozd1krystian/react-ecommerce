@@ -43,16 +43,19 @@ export const getCurrentUser = () => {
   });
 };
 
-export const getProducts = () => {
+export const getProducts = (start, limit) => {
   return new Promise((resolve, reject) => {
+    console.log(start);
     const products = [];
     firestore
       .collection("products")
-      .limit(5)
+      .orderBy("productId")
+      .startAfter(start)
+      .limit(limit)
       .get()
       .then((snapshot) => {
         snapshot.forEach((el) => products.push(el.data()));
-        resolve(products);
+        resolve({ products, last: snapshot.docs[snapshot.docs.length - 1] });
       })
       .catch((e) => reject(e.message));
   });
@@ -60,8 +63,30 @@ export const getProducts = () => {
 
 export const addProducts = (arr) => {
   let sizes = [39, 40, 41, 42, 43, 44, 45, 46];
+  console.log("Poczatek: ", arr.length);
+  shuffle(arr);
+
+  function shuffle(array) {
+    var currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+  }
   const pushBatch = (arr) => {
     const batch = firestore.batch();
+    const names = new Set();
     arr.forEach((doc) => {
       doc.sizes = [];
       let count = Math.floor(Math.random() * sizes.length);
@@ -80,6 +105,8 @@ export const addProducts = (arr) => {
       delete doc.lastVisited;
       doc.sizes.sort();
       if (doc.images.length < 1) return;
+      if (names.has(doc.productName)) return;
+      names.add(doc.productName);
       if (doc.productName.includes("Nike Air")) doc.brand = "Nike Air";
       else if (doc.productName.includes("Jordan")) doc.brand = "Jordan";
       else if (doc.productName.includes("Nike Free")) doc.brand = "Nike Free";

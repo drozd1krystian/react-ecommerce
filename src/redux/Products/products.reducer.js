@@ -2,6 +2,10 @@ import productsTypes from "./products.types";
 
 const INITIAL_STATE = {
   products: [],
+  pagination: {
+    start: 0,
+    limit: 20,
+  },
 };
 
 const productsReducer = (state = INITIAL_STATE, action) => {
@@ -9,7 +13,11 @@ const productsReducer = (state = INITIAL_STATE, action) => {
     case productsTypes.FETCH_PRODUCTS_SUCCESS:
       return {
         ...state,
-        products: [...action.payload],
+        products: [...state.products, ...action.payload.products],
+        pagination: {
+          ...state.pagination,
+          start: action.payload.last,
+        },
       };
     case productsTypes.GET_PRODUCT:
       return {

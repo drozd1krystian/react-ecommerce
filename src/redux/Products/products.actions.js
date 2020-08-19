@@ -1,7 +1,8 @@
 import productsTypes from "./products.types";
 
-export const fetchProductsStart = () => ({
+export const fetchProductsStart = (pagination) => ({
   type: productsTypes.FETCH_PRODUCTS_START,
+  payload: pagination,
 });
 
 export const fetchProductsSuccess = (products) => ({
