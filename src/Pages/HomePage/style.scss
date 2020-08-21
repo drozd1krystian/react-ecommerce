@@ -1,8 +1,23 @@
 .page {
   width: 100%;
 }
-
 .content {
   display: flex;
   width: 100%;
+}
+
+.show-filters {
+  margin-left: -240px;
+  transform: translateX(-100%);
+}
+
+.options {
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 1.5rem;
+  svg {
+    cursor: pointer;
+  }
 }

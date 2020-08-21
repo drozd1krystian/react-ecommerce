@@ -74,6 +74,17 @@ const productsReducer = (state = INITIAL_STATE, action) => {
           ...INITIAL_STATE.filters,
         },
       };
+
+    case productsTypes.SORT: {
+      const category = action.payload;
+      const sorted = [
+        ...state.products.sort((a, b) => b.salePrice - a.salePrice),
+      ];
+      return {
+        ...state,
+        products: category === "desc" ? sorted : sorted.reverse(),
+      };
+    }
     default:
       return {
         ...state,

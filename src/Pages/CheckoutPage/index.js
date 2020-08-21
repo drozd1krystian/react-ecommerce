@@ -26,11 +26,11 @@ const CheckoutPage = (props) => {
   const dispatch = useDispatch();
   const [payment, setPayment] = useState("creditCard");
 
-  const [email, setEmail] = useState(null);
-  const [name, setName] = useState(null);
-  const [address, setAddress] = useState(null);
-  const [postCode, setPostCode] = useState(null);
-  const [city, setCity] = useState(null);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [postCode, setPostCode] = useState("");
+  const [city, setCity] = useState("");
 
   const cartTotal =
     cart.length > 0
@@ -101,7 +101,7 @@ const CheckoutPage = (props) => {
             value={name}
             handleChange={(e) => setName(e.target.value)}
             required
-            placeHolder=" "
+            placeholder=" "
           />
           <FormInput
             label="Email"
@@ -109,14 +109,14 @@ const CheckoutPage = (props) => {
             type="email"
             value={email}
             handleChange={(e) => setEmail(e.target.value)}
-            placeHolder=" "
+            placeholder=" "
           />
           <FormInput
             label="Address"
             required
             value={address}
             handleChange={(e) => setAddress(e.target.value)}
-            placeHolder=" "
+            placeholder=" "
           />
           <div className="input-wrapper">
             <FormInput
@@ -125,14 +125,14 @@ const CheckoutPage = (props) => {
               pattern="[0-9]*"
               value={postCode}
               handleChange={(e) => setPostCode(e.target.value)}
-              placeHolder=" "
+              placeholder=" "
             />
             <FormInput
               label="City"
               required
               value={city}
               handleChange={(e) => setCity(e.target.value)}
-              placeHolder=" "
+              placeholder=" "
             />
           </div>
 

@@ -14,6 +14,7 @@ import {
 } from "../../../redux/Products/products.actions";
 import Button from "../../../components/forms/Button";
 import { useState } from "react";
+import { GrClose } from "react-icons/gr";
 
 const mapState = ({ products }) => ({
   filters: products.filters,
@@ -34,6 +35,7 @@ const Filters = (props) => {
   const dispatch = useDispatch();
   const { filters } = useSelector(mapState);
   const [filtersChanged, setFiltersChanged] = useState(false);
+  const { showFilters, toggleFilters } = props;
 
   const handleFilterCheck = (e) => {
     const { value, name } = e.target;
@@ -54,8 +56,14 @@ const Filters = (props) => {
       dispatch(changeFilterType("filter"));
       dispatch(resetStarter());
       dispatch(fetchProductsStart(filter));
+      toggleFilters();
     }
     setFiltersChanged(false);
+  };
+
+  const clearSelectedFilters = () => {
+    dispatch(clearFilters());
+    setFiltersChanged(true);
   };
 
   const mapSizes = () => {
@@ -85,15 +93,21 @@ const Filters = (props) => {
   };
 
   return (
-    <div className="filters column">
+    <div
+      className={showFilters ? "show-filters filters column" : "filters column"}
+    >
+      <span className="close" onClick={toggleFilters}>
+        <GrClose />
+      </span>
       <h3 className="">Size</h3>
       <div className="list sizes">{mapSizes()}</div>
 
       <h3 className="">Brand</h3>
       <div className="list ">{mapBrands()}</div>
-
-      <Button onClick={fetchProducts}>Filter</Button>
-      <Button onClick={() => dispatch(clearFilters())}>Clear</Button>
+      <div>
+        <Button onClick={fetchProducts}>Filter</Button>
+        <Button onClick={clearSelectedFilters}>Clear</Button>
+      </div>
     </div>
   );
 };

@@ -15,9 +15,9 @@ export const addFilter = (filter) => ({
   payload: filter,
 });
 
-export const changeFilterType = (type) => ({
+export const changeFilterType = (category) => ({
   type: productsTypes.CHANGE_FILTER_TYPE,
-  payload: type,
+  payload: category,
 });
 
 export const clearFilters = () => ({
@@ -31,4 +31,9 @@ export const removeFilter = (filter) => ({
 
 export const resetStarter = () => ({
   type: productsTypes.RESET_STARTER,
+});
+
+export const sortProducts = (category) => ({
+  type: productsTypes.SORT,
+  payload: category,
 });
