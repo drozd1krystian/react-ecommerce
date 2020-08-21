@@ -28,3 +28,7 @@ export const removeFilter = (filter) => ({
   type: productsTypes.REMOVE_FILTER,
   payload: filter,
 });
+
+export const resetStarter = () => ({
+  type: productsTypes.RESET_STARTER,
+});

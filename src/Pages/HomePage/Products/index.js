@@ -8,6 +8,7 @@ import {
   changeFilterType,
 } from "../../../redux/Products/products.actions";
 import Button from "../../../components/forms/Button";
+import { useState } from "react";
 
 // import { addProducts } from "../../../firebase/utils";
 
@@ -21,6 +22,7 @@ const mapState = ({ products }) => ({
 const Products = (props) => {
   const { products, filters } = useSelector(mapState);
   const dispatch = useDispatch();
+  const [initialLoad, setInitialLoad] = useState(true);
 
   const loadMoreProducts = () => {
     dispatch(changeFilterType("load"));
@@ -28,8 +30,11 @@ const Products = (props) => {
   };
 
   useEffect(() => {
-    if (products.length === 0) dispatch(fetchProductsStart(filters));
-  }, [dispatch, products, filters]);
+    if (initialLoad) {
+      dispatch(fetchProductsStart(filters));
+      setInitialLoad(false);
+    }
+  }, [dispatch, filters, initialLoad]);
 
   return (
     <div className="products-container">

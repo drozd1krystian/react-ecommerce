@@ -46,6 +46,7 @@ export const getCurrentUser = () => {
 export const getProducts = (filters) => {
   return new Promise((resolve, reject) => {
     const { start, limit, sizes, brands } = filters;
+
     const products = [];
     const productsRef = firestore.collection("products");
 

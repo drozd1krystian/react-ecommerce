@@ -10,30 +10,34 @@ import {
   changeFilterType,
   clearFilters,
   removeFilter,
+  resetStarter,
 } from "../../../redux/Products/products.actions";
 import Button from "../../../components/forms/Button";
+import { useState } from "react";
 
 const mapState = ({ products }) => ({
   filters: products.filters,
 });
 
+const sizesValues = [39, 40, 41, 42, 43, 44, 45, 46];
+const brandsValues = [
+  "Nike",
+  "Nike Air",
+  "Jordan",
+  "Nike Free",
+  "Nike SB",
+  "Nike Flex",
+  "LeBron",
+];
+
 const Filters = (props) => {
   const dispatch = useDispatch();
   const { filters } = useSelector(mapState);
-  const sizesValues = [39, 40, 41, 42, 43, 44, 45, 46];
-  const brandsValues = [
-    "Nike",
-    "Nike Air",
-    "Jordan",
-    "Nike Free",
-    "Nike Air Force",
-    "Nike SB",
-    "Nike Flex",
-    "LeBron",
-  ];
+  const [filtersChanged, setFiltersChanged] = useState(false);
 
   const handleFilterCheck = (e) => {
     const { value, name } = e.target;
+    setFiltersChanged(true);
     if (filters[name].includes(parseInt(value) || value)) {
       dispatch(removeFilter({ type: name, value: parseInt(value) || value }));
       return;
@@ -42,8 +46,16 @@ const Filters = (props) => {
   };
 
   const fetchProducts = () => {
-    dispatch(changeFilterType("filter"));
-    dispatch(fetchProductsStart(filters));
+    if (filtersChanged) {
+      const filter = {
+        ...filters,
+        start: 0,
+      };
+      dispatch(changeFilterType("filter"));
+      dispatch(resetStarter());
+      dispatch(fetchProductsStart(filter));
+    }
+    setFiltersChanged(false);
   };
 
   const mapSizes = () => {
@@ -74,10 +86,10 @@ const Filters = (props) => {
 
   return (
     <div className="filters column">
-      <h3 className="">Pick Size</h3>
+      <h3 className="">Size</h3>
       <div className="list sizes">{mapSizes()}</div>
 
-      <h3 className="">Pick Brand</h3>
+      <h3 className="">Brand</h3>
       <div className="list ">{mapBrands()}</div>
 
       <Button onClick={fetchProducts}>Filter</Button>

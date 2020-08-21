@@ -6,6 +6,7 @@ const productsTypes = {
   REMOVE_FILTER: "REMOVE_FILTER",
   CHANGE_FILTER_TYPE: "CHANGE_FILTER_TYPE",
   CLEAR_FILTERS: "CLEAR_FILTERS",
+  RESET_STARTER: "RESET_STARTER",
 };
 
 export default productsTypes;

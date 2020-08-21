@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   products: [],
   filters: {
     start: 0,
-    limit: 5,
+    limit: 20,
     sizes: [],
     brands: [],
     type: "load",
@@ -22,7 +22,7 @@ const productsReducer = (state = INITIAL_STATE, action) => {
             : [...action.payload.products],
         filters: {
           ...state.filters,
-          start: action.payload.last,
+          start: action.payload.last || 0,
         },
       };
     case productsTypes.ADD_FILTER: {
@@ -56,6 +56,17 @@ const productsReducer = (state = INITIAL_STATE, action) => {
         },
       };
     }
+
+    case productsTypes.RESET_STARTER: {
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          start: 0,
+        },
+      };
+    }
+
     case productsTypes.CLEAR_FILTERS:
       return {
         ...state,
