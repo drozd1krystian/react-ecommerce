@@ -17,7 +17,7 @@ const CartItem = ({ product }) => {
         <p>{product.productName}</p>
         <p>Amount: {product.amount}</p>
         <p>Size: {product.size}</p>
-        <p>Price: {product.salePrice * product.amount}$</p>
+        <p>Price: {(product.salePrice * product.amount).toFixed(2)}$</p>
       </div>
     </div>
   );

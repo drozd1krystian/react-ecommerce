@@ -14,4 +14,7 @@
   &:hover {
     background: $aluxury-color;
   }
+  &:disabled {
+    display: none;
+  }
 }

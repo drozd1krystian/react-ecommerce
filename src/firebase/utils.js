@@ -43,21 +43,56 @@ export const getCurrentUser = () => {
   });
 };
 
-export const getProducts = (start, limit) => {
+export const getProducts = (filters) => {
   return new Promise((resolve, reject) => {
-    console.log(start);
+    const { start, limit, sizes, brands } = filters;
     const products = [];
-    firestore
-      .collection("products")
-      .orderBy("productId")
-      .startAfter(start)
-      .limit(limit)
-      .get()
-      .then((snapshot) => {
-        snapshot.forEach((el) => products.push(el.data()));
-        resolve({ products, last: snapshot.docs[snapshot.docs.length - 1] });
-      })
-      .catch((e) => reject(e.message));
+    const productsRef = firestore.collection("products");
+
+    if (brands.length > 0) {
+      productsRef
+        .where("brand", "in", brands)
+        .orderBy("productId")
+        .startAfter(start)
+        .limit(limit)
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
+            if (sizes.length > 0) {
+              if (
+                doc.data().sizes.some((size) => sizes.some((el) => el === size))
+              )
+                products.push(doc.data());
+            } else products.push(doc.data());
+          });
+          resolve({ products, last: snapshot.docs[snapshot.docs.length - 1] });
+        })
+        .catch((e) => reject(e.message));
+    } else if (sizes.length > 0) {
+      productsRef
+        .where("sizes", "array-contains-any", sizes)
+        .orderBy("sizes")
+        .startAfter(start)
+        .limit(limit)
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((doc) => products.push(doc.data()));
+          resolve({ products, last: snapshot.docs[snapshot.docs.length - 1] });
+        })
+        .catch((e) => reject(e.message));
+    }
+
+    if (sizes.length === 0 && brands.length === 0)
+      productsRef
+        .orderBy("productId")
+        .startAfter(start)
+        .limit(limit)
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((doc) => products.push(doc.data()));
+          resolve({ products, last: snapshot.docs[snapshot.docs.length - 1] });
+        })
+        .catch((e) => reject(e.message));
   });
 };
 

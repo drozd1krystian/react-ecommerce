@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/Header/index";
 import Footer from "../components/Footer/index";
 
-const MainLaout = (props) => {
+const MainLayout = (props) => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+
   return (
     <div className="main">
       <Header {...props} />
@@ -12,4 +18,4 @@ const MainLaout = (props) => {
   );
 };
 
-export default MainLaout;
+export default MainLayout;

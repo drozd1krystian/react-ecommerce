@@ -4,7 +4,7 @@
   flex-wrap: wrap;
   padding: 0 48px 50px 0;
   position: relative;
-
+  min-height: calc(calc(400px * 4) - 140px);
   .submit {
     width: 40%;
     position: absolute;

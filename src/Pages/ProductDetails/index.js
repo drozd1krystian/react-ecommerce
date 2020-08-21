@@ -11,6 +11,7 @@ import { addProductToCart } from "../../redux/Cart/cart.actions";
 import Product from "../../components/Product/index";
 import Error from "../../components/Error/index";
 import LoadingScreen from "../../components/LoadingScreen";
+import SizeRadioButton from "../../components/forms/SizeRadioButton";
 
 import NotFoundTempalte from "../../Templates/NotFoundTemplate/index";
 
@@ -123,18 +124,13 @@ const ProductDetails = (props) => {
               <Error errors={errors} />
               <div className="sizes mb2">
                 {product.sizes.map((el, index) => (
-                  <div className="size" key={`radio-${index}`}>
-                    <input
-                      type="radio"
-                      value={el}
-                      name="size"
-                      id={`size-${el}`}
-                      onClick={handleRadioInput}
-                    />
-                    <label htmlFor={`size-${el}`}>
-                      <span>EU {el}</span>
-                    </label>
-                  </div>
+                  <SizeRadioButton
+                    value={el}
+                    id={`size-${el}`}
+                    onClick={handleRadioInput}
+                    key={`radio-${index}`}
+                    label={el}
+                  />
                 ))}
               </div>
               <button className="btn-light" onClick={handleAddProduct}>

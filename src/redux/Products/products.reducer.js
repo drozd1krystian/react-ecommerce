@@ -2,9 +2,12 @@ import productsTypes from "./products.types";
 
 const INITIAL_STATE = {
   products: [],
-  pagination: {
+  filters: {
     start: 0,
-    limit: 20,
+    limit: 5,
+    sizes: [],
+    brands: [],
+    type: "load",
   },
 };
 
@@ -13,18 +16,52 @@ const productsReducer = (state = INITIAL_STATE, action) => {
     case productsTypes.FETCH_PRODUCTS_SUCCESS:
       return {
         ...state,
-        products: [...state.products, ...action.payload.products],
-        pagination: {
-          ...state.pagination,
+        products:
+          state.filters.type === "load"
+            ? [...state.products, ...action.payload.products]
+            : [...action.payload.products],
+        filters: {
+          ...state.filters,
           start: action.payload.last,
         },
       };
-    case productsTypes.GET_PRODUCT:
+    case productsTypes.ADD_FILTER: {
+      const { type, value } = action.payload;
       return {
         ...state,
-        currentProduct: state.products.find(
-          (el) => el.productId === action.payload
-        ),
+        filters: {
+          ...state.filters,
+          [type]: [...state.filters[type], value],
+        },
+      };
+    }
+
+    case productsTypes.REMOVE_FILTER: {
+      const { type, value } = action.payload;
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          [type]: state.filters[type].filter((el) => el !== value),
+        },
+      };
+    }
+
+    case productsTypes.CHANGE_FILTER_TYPE: {
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          type: action.payload,
+        },
+      };
+    }
+    case productsTypes.CLEAR_FILTERS:
+      return {
+        ...state,
+        filters: {
+          ...INITIAL_STATE.filters,
+        },
       };
     default:
       return {

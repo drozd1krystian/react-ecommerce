@@ -3,7 +3,10 @@ import "./style.scss";
 import Product from "../../../components/Product/index";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { fetchProductsStart } from "../../../redux/Products/products.actions";
+import {
+  fetchProductsStart,
+  changeFilterType,
+} from "../../../redux/Products/products.actions";
 import Button from "../../../components/forms/Button";
 
 // import { addProducts } from "../../../firebase/utils";
@@ -12,22 +15,21 @@ import Button from "../../../components/forms/Button";
 
 const mapState = ({ products }) => ({
   products: products.products,
-  pagination: products.pagination,
+  filters: products.filters,
 });
 
 const Products = (props) => {
-  const { products, pagination } = useSelector(mapState);
+  const { products, filters } = useSelector(mapState);
   const dispatch = useDispatch();
-  const { start, limit } = pagination;
 
   const loadMoreProducts = () => {
-    dispatch(fetchProductsStart({ start, limit }));
+    dispatch(changeFilterType("load"));
+    dispatch(fetchProductsStart(filters));
   };
 
   useEffect(() => {
-    if (products.length === 0)
-      dispatch(fetchProductsStart({ start: 0, limit: 20 }));
-  }, [dispatch, products]);
+    if (products.length === 0) dispatch(fetchProductsStart(filters));
+  }, [dispatch, products, filters]);
 
   return (
     <div className="products-container">
@@ -37,7 +39,12 @@ const Products = (props) => {
       {products.map((el, index) => {
         return <Product key={index} product={el}></Product>;
       })}
-      <Button onClick={loadMoreProducts}>Load More</Button>
+      <Button
+        onClick={loadMoreProducts}
+        disabled={products.length < filters.limit}
+      >
+        Load More
+      </Button>
     </div>
   );
 };

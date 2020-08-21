@@ -1,6 +1,11 @@
 .filters {
   min-width: 240px;
   padding-left: 48px;
+  max-width: 240px;
+
+  .list {
+    margin: 25px 0;
+  }
 }
 
 @media screen and (max-width: 1024px) {
