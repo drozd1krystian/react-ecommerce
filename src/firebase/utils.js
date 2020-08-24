@@ -86,6 +86,7 @@ export const getProducts = (filters) => {
     if (sizes.length === 0 && brands.length === 0)
       productsRef
         .orderBy("productId")
+        .orderBy("salePrice", "asc")
         .startAfter(start)
         .limit(limit)
         .get()
@@ -95,6 +96,28 @@ export const getProducts = (filters) => {
         })
         .catch((e) => reject(e.message));
   });
+};
+
+export const checkOutUser = (order, userId) => {
+  const ordersRef = firestore
+    .collection("users")
+    .doc(userId)
+    .collection("orders")
+    .doc();
+
+  const timestamp = new Date();
+  const { cart, payment } = order;
+
+  try {
+    console.log(cart);
+    ordersRef.set({
+      cart,
+      payment,
+      createdDate: timestamp,
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const addProducts = (arr) => {

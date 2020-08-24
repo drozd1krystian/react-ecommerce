@@ -54,7 +54,15 @@ const SignUp = (props) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     dispatch(
-      signUpUserStart({ email, password, confirmPassword, displayName })
+      signUpUserStart({
+        email,
+        password,
+        confirmPassword,
+        displayName,
+        address,
+        postCode,
+        city,
+      })
     );
   };
 
@@ -70,7 +78,7 @@ const SignUp = (props) => {
           label="Email"
           handleChange={(e) => setEmail(e.target.value)}
           required
-          placeHolder=" "
+          placeholder=" "
         />
 
         <FormInput
@@ -80,7 +88,7 @@ const SignUp = (props) => {
           label="Password"
           handleChange={(e) => setPassword(e.target.value)}
           required
-          placeHolder=" "
+          placeholder=" "
         />
 
         <FormInput
@@ -90,7 +98,7 @@ const SignUp = (props) => {
           label="Confirm Password"
           handleChange={(e) => setConfirmPassword(e.target.value)}
           required
-          placeHolder=" "
+          placeholder=" "
         />
         <FormInput
           type="text"
@@ -99,14 +107,14 @@ const SignUp = (props) => {
           label="First & Last Name"
           handleChange={(e) => setDisplayName(e.target.value)}
           required
-          placeHolder=" "
+          placeholder=" "
         />
         <FormInput
           label="Address"
           required
           value={address}
           handleChange={(e) => setAddress(e.target.value)}
-          placeHolder=" "
+          placeholder=" "
         />
         <div className="input-wrapper">
           <FormInput
@@ -115,14 +123,14 @@ const SignUp = (props) => {
             pattern="[0-9]*"
             value={postCode}
             handleChange={(e) => setPostCode(e.target.value)}
-            placeHolder=" "
+            placeholder=" "
           />
           <FormInput
             label="City"
             required
             value={city}
             handleChange={(e) => setCity(e.target.value)}
-            placeHolder=" "
+            placeholder=" "
           />
         </div>
 

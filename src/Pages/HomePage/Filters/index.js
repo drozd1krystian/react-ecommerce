@@ -56,7 +56,9 @@ const Filters = (props) => {
       dispatch(changeFilterType("filter"));
       dispatch(resetStarter());
       dispatch(fetchProductsStart(filter));
-      toggleFilters();
+      if (window.innerWidth < 1024) {
+        toggleFilters();
+      }
     }
     setFiltersChanged(false);
   };
@@ -96,15 +98,15 @@ const Filters = (props) => {
     <div
       className={showFilters ? "show-filters filters column" : "filters column"}
     >
-      <span className="close" onClick={toggleFilters}>
+      <span className="filters__close" onClick={toggleFilters}>
         <GrClose />
       </span>
-      <h3 className="">Size</h3>
-      <div className="list sizes">{mapSizes()}</div>
+      <h3 className="field">Size</h3>
+      <div className="filters__list sizes">{mapSizes()}</div>
 
-      <h3 className="">Brand</h3>
-      <div className="list ">{mapBrands()}</div>
-      <div>
+      <h3 className="field">Brand</h3>
+      <div className="filters__list">{mapBrands()}</div>
+      <div className="btn__wrapper">
         <Button onClick={fetchProducts}>Filter</Button>
         <Button onClick={clearSelectedFilters}>Clear</Button>
       </div>

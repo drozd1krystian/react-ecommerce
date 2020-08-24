@@ -16,21 +16,29 @@ import { checkOut } from "../../redux/Cart/cart.actions";
 import { useEffect } from "react";
 import { useState } from "react";
 
-const mapState = ({ cart }) => ({
+const mapState = ({ cart, user }) => ({
   cart: cart.cart,
+  user: user.currentUser
+    ? user.currentUser
+    : {
+        email: "",
+        displayName: "",
+        city: "",
+        addres: "",
+        postCode: "",
+      },
 });
 
 const CheckoutPage = (props) => {
-  const { cart } = useSelector(mapState);
+  const { cart, user } = useSelector(mapState);
   const history = useHistory();
   const dispatch = useDispatch();
   const [payment, setPayment] = useState("creditCard");
-
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [postCode, setPostCode] = useState("");
-  const [city, setCity] = useState("");
+  const [email, setEmail] = useState(user.email || "");
+  const [name, setName] = useState(user.displayName || "");
+  const [address, setAddress] = useState(user.address || "");
+  const [postCode, setPostCode] = useState(user.postCode || "");
+  const [city, setCity] = useState(user.city || "");
 
   const cartTotal =
     cart.length > 0
@@ -42,8 +50,7 @@ const CheckoutPage = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (payment) {
-      dispatch(checkOut());
-      console.log(payment);
+      dispatch(checkOut({ cart, payment }));
       setTimeout(() => {
         history.push("/");
       }, 2000);
@@ -93,9 +100,9 @@ const CheckoutPage = (props) => {
           <p>Order Complete</p>
         </div>
       </div>
-      <div className="details-wrapper">
+      <div className="details__wrapper">
         <form className="wrap billing" onSubmit={handleSubmit}>
-          <h3 className="section-name">Billing Details</h3>
+          <h3 className="section__name">Billing Details</h3>
           <FormInput
             label="First & Last Name"
             value={name}
@@ -118,7 +125,7 @@ const CheckoutPage = (props) => {
             handleChange={(e) => setAddress(e.target.value)}
             placeholder=" "
           />
-          <div className="input-wrapper">
+          <div className="input__wrapper">
             <FormInput
               label="Postal Code"
               required
@@ -136,7 +143,7 @@ const CheckoutPage = (props) => {
             />
           </div>
 
-          <h3 className="section-name">Payment Method</h3>
+          <h3 className="section__name">Payment Method</h3>
           <PaymentInput
             label="Credit Card"
             id="creditCard"
@@ -157,16 +164,16 @@ const CheckoutPage = (props) => {
           <Button>Complete Your Order</Button>
         </form>
         <div className="wrap">
-          <div className="checkout-summary">
-            <h3 className="section-name">
+          <div className="summary">
+            <h3 className="section__name">
               <BsBag /> Cart Summary
             </h3>
-            <div className="summary-items">
-              {cart.map((el, index) => (
-                <CheckoutItem product={el} key={`summary-item${index}`} />
+            <div className="summary__items">
+              {cart.map((el) => (
+                <CheckoutItem product={el} key={el.productId} />
               ))}
             </div>
-            <div className="checkout-total text-bold">
+            <div className="summary__total text__bold">
               <span>Subtotal: </span>
               <span>${cartTotal.toFixed(2)}</span>
             </div>

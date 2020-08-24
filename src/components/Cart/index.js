@@ -31,19 +31,19 @@ const Cart = (props) => {
       : 0;
 
   return (
-    <div className="link-wrapper" ref={cartDiv}>
+    <div className="link__wrapper" ref={cartDiv}>
       <Link to="/cart" className="link">
-        <span>
+        <span className="icon">
           <BsBag />
         </span>
-        <span className="item-counter">{cartQuantity}</span>
+        <span className="counter">{cartQuantity}</span>
       </Link>
       {cart.length > 0 && location.pathname !== "/cart" && (
-        <div className="data-container">
-          <h2 className="p1 text-center small-header">Basket</h2>
-          <div className="cart-items">
-            {cart.map((el, index) => (
-              <CartItem product={el} key={`cartItem-${index}`} />
+        <div className="data__container">
+          <h2 className="p1 text--center">Basket</h2>
+          <div className="cart">
+            {cart.map((el) => (
+              <CartItem product={el} key={el.productId} />
             ))}
           </div>
 

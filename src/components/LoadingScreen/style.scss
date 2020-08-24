@@ -1,6 +1,6 @@
 @import "../../assets/variables";
 
-.loading-screen {
+.loading__screen {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -11,7 +11,7 @@
   background: #eee;
   z-index: 200000;
   opacity: 0.6;
-  .loading-thumb {
+  .loading__thumb {
     position: absolute;
     height: 30px;
     width: 200px;
@@ -19,7 +19,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    .loading-bar {
+    .loading__bar {
       width: 0%;
       height: 100%;
       background: $aluxury-color;

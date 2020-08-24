@@ -14,7 +14,7 @@
   }
 }
 
-.product-description {
+.description {
   padding: 2rem 2rem 0 3rem;
   width: 30%;
   display: flex;
@@ -25,7 +25,7 @@
   }
 }
 
-.sizes {
+.description__sizes {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 5px;
@@ -35,7 +35,7 @@ button {
   font-size: 1.5rem;
 }
 
-.similiar-products {
+.similiar__products {
   display: flex;
   position: relative;
   overflow-x: auto;
@@ -55,10 +55,10 @@ button {
   }
 }
 
-.similiar-wrap {
+.similiar {
   position: relative;
-  .btn-left,
-  .btn-right {
+  .btn--left,
+  .btn--right {
     padding: 1rem 1.2rem;
     border-radius: 50%;
     background: $aluxury-color;
@@ -71,15 +71,15 @@ button {
     opacity: 0;
     cursor: pointer;
   }
-  .btn-left {
+  .btn--left {
     left: 20px;
   }
-  .btn-right {
+  .btn--right {
     right: 20px;
   }
 
-  &:hover .btn-left,
-  &:hover .btn-right {
+  &:hover .btn--left,
+  &:hover .btn--right {
     opacity: 1;
   }
 }
@@ -97,11 +97,11 @@ button {
         min-width: 80%;
       }
     }
-    .product-description {
+    .description {
       width: 100%;
     }
   }
-  .similiar-products {
+  .similiar {
     &::-webkit-scrollbar {
       -webkit-appearance: initial;
     }
@@ -110,19 +110,19 @@ button {
       padding: 0 4px 0 4px;
     }
   }
-  .similiar-wrap .btn-left,
-  .similiar-wrap .btn-right {
+  .similiar .btn-left,
+  .similiar .btn-right {
     display: none;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .similiar-products .wrapper {
+  .similiar .wrapper {
     min-width: 70%;
   }
 }
 @media screen and (max-width: 767px) and (orientation: landscape) {
-  .similiar-products .wrapper {
+  .similiar .wrapper {
     min-width: 30%;
   }
 }

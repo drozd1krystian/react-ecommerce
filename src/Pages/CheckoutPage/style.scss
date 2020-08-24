@@ -63,7 +63,7 @@
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  .section-name {
+  .section__name {
     margin: 30px 0 20px 10px;
     font-size: 1.3rem;
     font-weight: 500;
@@ -74,7 +74,7 @@
   padding: 2rem 0;
   width: 100%;
   max-width: 600px;
-  .input-wrapper {
+  .input__wrapper {
     display: flex;
     div:first-child {
       flex-basis: 55%;
@@ -86,22 +86,22 @@
   }
 }
 
-.details-wrapper {
+.details__wrapper {
   display: flex;
 }
 
-.checkout-summary {
+.summary {
   margin: 118px 0 0 30px;
   border: 1px solid #333;
   border-radius: 5px;
-  .section-name {
+  .section__name {
     margin: 30px 30px 0 30px;
   }
-  .summary-items {
+  .summary__items {
     margin: 10px 30px;
   }
 
-  .checkout-total {
+  .summary__total {
     border-top: 1px solid #333;
     padding: 20px;
     display: flex;

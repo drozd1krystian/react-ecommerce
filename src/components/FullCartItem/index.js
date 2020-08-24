@@ -28,38 +28,40 @@ const FullCartItem = ({ product, index, ...otherProps }) => {
   };
 
   return (
-    <div className="p1 full-cart-item">
-      <div className="item-desc ">
-        <div className="photo">
+    <div className=" full__item">
+      <div className="full__item__column">
+        <div className="item__photo">
           <img
             src={product.images[0]}
             alt={product.productName}
-            className="img"
+            className="photo__img"
           />
         </div>
-        <div className="item-info">
-          <p>{product.productName}</p>
-          <p>Size: {product.size}</p>
-          <span className="icon" onClick={handleRemoveProduct}>
+        <div className="full__item__info">
+          <p className="field">{product.productName}</p>
+          <p className="field">Size: {product.size}</p>
+          <span className="field icon" onClick={handleRemoveProduct}>
             <FiTrash2 />
           </span>
         </div>
       </div>
-      <div className="item-total">
+      <div className="full__item__column full__item__column--spacing">
         <div>
-          <p>{product.salePrice}$</p>
+          <p className="field">{product.salePrice}$</p>
         </div>
-        <div className="change-amount">
-          <span onClick={handleAmountDecrease}>
+        <div className="full__item__amount">
+          <span onClick={handleAmountDecrease} className="icon field--btn">
             <FiMinus />
           </span>
-          <span className="item-amount">{product.amount}</span>
-          <span onClick={handleAmountIncrease}>
+          <span className="field field--btn field--border">
+            {product.amount}
+          </span>
+          <span onClick={handleAmountIncrease} className="icon field--btn">
             <BsPlus />
           </span>
         </div>
         <div>
-          <p className="text-bold ">
+          <p className="field--bold">
             Total: {(product.salePrice * product.amount).toFixed(2)}$
           </p>
         </div>

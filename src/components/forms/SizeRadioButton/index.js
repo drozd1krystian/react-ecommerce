@@ -6,13 +6,13 @@ const SizeRadioButton = ({ label, ...otherProps }) => {
     <div className="size">
       <input
         type="radio"
-        className="radio"
+        className="size__radio"
         name="size"
         id={`size-${label}`}
         {...otherProps}
       />
-      <label className="radio-label" htmlFor={`size-${label}`}>
-        <span>EU {label}</span>
+      <label className="size__label" htmlFor={`size-${label}`}>
+        <span className="field">EU {label}</span>
       </label>
     </div>
   );

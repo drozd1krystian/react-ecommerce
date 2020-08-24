@@ -5,7 +5,11 @@ const Error = ({ errors, ...otherProps }) => {
   return (
     <ul className="errors">
       {errors.map((error, index) => {
-        return <li key={index}>{error}</li>;
+        return (
+          <li className="errors_row" key={index}>
+            {error}
+          </li>
+        );
       })}
     </ul>
   );

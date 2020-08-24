@@ -3,10 +3,10 @@
   max-width: 240px;
   position: relative;
   transition: all 0.4s ease;
-  .list {
+  &__list {
     margin: 25px 0;
   }
-  .close {
+  &__close {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -29,7 +29,7 @@
     background: #fff;
     max-width: 100%;
 
-    .close {
+    &__close {
       display: block;
     }
   }

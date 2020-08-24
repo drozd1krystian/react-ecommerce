@@ -7,7 +7,7 @@ const Button = ({ handleChange, ...otherProps }) => {
       type="submit"
       onClick={handleChange}
       {...otherProps}
-      className="submit"
+      className="btn btn--submit"
     ></button>
   );
 };

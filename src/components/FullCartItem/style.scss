@@ -1,24 +1,30 @@
-.full-cart-item {
+.full__item {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   border-bottom: 1px solid #333;
   transition: all 0.5s ease;
+  margin-top: 10px;
   &:first-child {
     margin-top: 0;
   }
   &:last-child {
     border-bottom: none;
   }
-  .item-desc {
+  .full__item__column {
     width: 50%;
     display: flex;
     align-items: center;
+    position: relative;
   }
-  .item-info {
+
+  .full__item__column--spacing {
+    justify-content: space-between;
+  }
+
+  &__info {
     text-align: left;
-    span,
-    p {
+    .field {
       padding: 0.4rem;
       font-size: 14px;
     }
@@ -28,60 +34,57 @@
     }
   }
 
-  .item-total {
-    position: relative;
+  &__amount {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 50%;
 
-    .change-amount {
+    .field--btn {
+      border: 1px solid lighten(#333, 70%);
+      padding: 0.4rem;
+      font-size: 1.2rem;
+      width: 35px;
+      height: 35px;
       display: flex;
       align-items: center;
+      justify-content: center;
 
-      span,
-      .item-amount {
-        border: 1px solid lighten(#333, 70%);
-        padding: 0.4rem;
-        font-size: 1.2rem;
-        width: 35px;
-        height: 35px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .item-amount {
-        border-right: none;
-        border-left: none;
-      }
-      span:hover {
+      &:hover {
         background: lighten(#333, 70%);
         cursor: pointer;
       }
-      span:first-child {
+      &:first-child {
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
       }
-      span:last-child {
+      &:last-child {
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
       }
+    }
+    .field--bold {
+      font-weight: 600;
+    }
+
+    .field--border {
+      border-left: none;
+      border-right: none;
     }
   }
 }
 
 @media screen and (max-width: 767px) and (orientation: portrait) {
-  .full-cart-item .item-total {
+  .full__item .full__item__column {
     width: 100%;
-    flex-direction: column;
+    .item__photo,
+    &_info {
+      width: 50%;
+    }
     div {
       padding: 10px 0;
     }
   }
 
-  .full-cart-item {
-    .item-desc {
-      width: 100%;
-    }
+  .full__item__column--spacing {
+    flex-direction: column;
   }
 }

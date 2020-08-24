@@ -8,12 +8,14 @@ const PaymentInput = ({ label, handleChange, id, ...otherProps }) => {
         type="radio"
         {...otherProps}
         id={id}
-        className="payment-radio"
+        className="payment__radio"
         name="payment"
         value={id}
         onClick={handleChange}
       />
-      <label htmlFor={id}>{label}</label>
+      <label className="payment__label" htmlFor={id}>
+        {label}
+      </label>
     </div>
   );
 };

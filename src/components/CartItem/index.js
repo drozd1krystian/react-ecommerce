@@ -5,19 +5,21 @@ import "./style.scss";
 
 const CartItem = ({ product }) => {
   return (
-    <div className="cart-item p1">
-      <div className="photo">
+    <div className="item p1">
+      <div className="item__photo">
         <img
           src={product.images[0]}
           alt={product.productName}
-          className="img"
+          className="photo__img"
         />
       </div>
-      <div className="description">
-        <p>{product.productName}</p>
-        <p>Amount: {product.amount}</p>
-        <p>Size: {product.size}</p>
-        <p>Price: {(product.salePrice * product.amount).toFixed(2)}$</p>
+      <div className="item__description">
+        <p className="field">{product.productName}</p>
+        <p className="field">Amount: {product.amount}</p>
+        <p className="field">Size: {product.size}</p>
+        <p className="field">
+          Price: {(product.salePrice * product.amount).toFixed(2)}$
+        </p>
       </div>
     </div>
   );

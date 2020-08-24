@@ -37,7 +37,7 @@ const Products = (props) => {
   }, [dispatch, filters, initialLoad]);
 
   return (
-    <div className="products-container">
+    <div className="products">
       {/* <div>
         <button onClick={() => addProducts(all)}>Add</button>
       </div> */}

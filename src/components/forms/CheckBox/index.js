@@ -9,6 +9,7 @@ const CheckBox = ({ label, handleChange, ...otherProps }) => {
         id={label}
         onChange={handleChange}
         {...otherProps}
+        className="input"
       />
       {label && (
         <label htmlFor={label} className="label">

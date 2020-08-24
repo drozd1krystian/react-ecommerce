@@ -67,7 +67,7 @@ export const decreaseAmount = (index) => (dispatch) => {
   }, 1000);
 };
 
-export const checkOut = () => (dispatch) => {
+export const checkOut = (order) => (dispatch) => {
   dispatch({ type: cartTypes.SHOW_LOADING, payload: 1000 });
   setTimeout(() => {
     dispatch({ type: cartTypes.HIDE_LOADING, payload: 0 });
@@ -76,6 +76,7 @@ export const checkOut = () => (dispatch) => {
   setTimeout(() => {
     dispatch({
       type: cartTypes.CHECK_OUT,
+      payload: order,
     });
     scrollTop();
   }, 1000);

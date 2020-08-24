@@ -1,5 +1,5 @@
 @import "../../assets/variables";
-.cart-items {
+.cart {
   overflow: auto;
 
   &::-webkit-scrollbar {
@@ -15,15 +15,26 @@
   }
 }
 
+.counter {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: $aluxury-color;
+  border-radius: 50%;
+  color: $secondary-color;
+  padding: 0.1rem 0.4rem;
+  transition: all 0.3s ease;
+}
+
 @media screen and (max-width: 1024px) {
-  .data-container {
+  .data__container {
     width: 100%;
     opacity: 0;
   }
 }
 
 .show {
-  .data-container {
+  .data__container {
     display: block;
     opacity: 1;
     &::after {

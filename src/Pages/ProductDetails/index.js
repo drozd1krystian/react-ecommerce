@@ -74,7 +74,7 @@ const ProductDetails = (props) => {
     const getFiveRandomProducts = () => {
       let arr = [];
       if (products.length > 0) {
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 1; i++) {
           let value = Math.floor(Math.random() * products.length);
           if (!arr.includes(value)) arr.push(value);
           else i--;
@@ -115,14 +115,14 @@ const ProductDetails = (props) => {
                 </div>
               ))}
             </div>
-            <div className="product-description">
-              <h2 className="py2">{product.productName}</h2>
-              <span>{product.salePrice} $</span>
-              <p className="py2">{product.description}</p>
+            <div className="description">
+              <h2 className="py2 field">{product.productName}</h2>
+              <span className="field">{product.salePrice} $</span>
+              <p className="py2 field">{product.description}</p>
 
-              <p>Pick your size:</p>
+              <p className="field">Pick your size:</p>
               <Error errors={errors} />
-              <div className="sizes mb2">
+              <div className="description__sizes mb2">
                 {product.sizes.map((el, index) => (
                   <SizeRadioButton
                     value={el}
@@ -133,22 +133,25 @@ const ProductDetails = (props) => {
                   />
                 ))}
               </div>
-              <button className="btn-light" onClick={handleAddProduct}>
+              <button
+                className="btn btn--light btn--round btn--slide"
+                onClick={handleAddProduct}
+              >
                 <span>Add to cart</span>
               </button>
             </div>
           </div>
           <h3 className="p1">Similiar products</h3>
-          <div className="similiar-wrap">
-            <div className="similiar-products" ref={scroller}>
+          <div className="similiar">
+            <div className="similiar__products" ref={scroller}>
               {similiarProducts.map((el, index) => {
                 return <Product key={`similar-${index}`} product={el} />;
               })}
             </div>
-            <div className="btn-left" onClick={scrollLeft}>
+            <div className="btn--left" onClick={scrollLeft}>
               <AiOutlineLeft />
             </div>
-            <div className="btn-right" onClick={scrollRight}>
+            <div className="btn--right" onClick={scrollRight}>
               <AiOutlineRight />
             </div>
           </div>

@@ -7,15 +7,15 @@ import "./style.scss";
 const Product = (props) => {
   const { product } = props;
   return (
-    <div className="wrapper">
+    <div className="card">
       <Link to={{ pathname: `/product/${product.productId}` }}>
-        <div className="card">
+        <div className="card__content">
           <div className="photo">
-            <img src={product.images[0]} alt="product" />
+            <img src={product.images[0]} alt="product" className="photo__img" />
           </div>
-          <div className="product-details">
-            <span className="product-name"> {product.productName} </span>
-            <span className="product-price"> {product.salePrice} $</span>
+          <div className="details">
+            <span className="details__name">{product.productName}</span>
+            <span className="details__price"> {product.salePrice} $</span>
           </div>
         </div>
       </Link>

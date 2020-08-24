@@ -9,6 +9,7 @@ import { FaRegUser } from "react-icons/fa";
 
 import SignIn from "../../Pages/SignIn/index";
 import Cart from "../Cart/index";
+import Button from "../forms/Button";
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -30,28 +31,24 @@ const Header = (props) => {
 
       <ul className="links">
         <li>
-          <div className="link-wrapper">
+          <div className="link__wrapper">
             <Link to={currentUser ? "/profile" : "/signin"} className="link">
               <span>
                 <FaRegUser />
               </span>
             </Link>
             {currentUser && (
-              <div className="data-container">
-                <h3 className="text-center mt2 small-header">
-                  Hello Display Name
-                </h3>
-                <ul className="mt1">
-                  <li>Your account</li>
-                  <li>Your orders</li>
+              <div className="data__container">
+                <h3 className="text--center mt2">Hello Display Name</h3>
+                <ul className="mt1 profile">
+                  <li className="field">Your account</li>
+                  <li className="field">Your orders</li>
                 </ul>
-                <span onClick={() => signOut()} className="btn-light mt2 show">
-                  <span> Logout</span>
-                </span>
+                <Button onClick={signOut}>Logout</Button>
               </div>
             )}
             {!currentUser && (
-              <div className="data-container">
+              <div className="data__container">
                 <SignIn />
               </div>
             )}

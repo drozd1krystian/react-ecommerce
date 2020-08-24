@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   products: [],
   filters: {
     start: 0,
-    limit: 20,
+    limit: 5,
     sizes: [],
     brands: [],
     type: "load",

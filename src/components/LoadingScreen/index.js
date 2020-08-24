@@ -18,9 +18,9 @@ const LoadingScreen = (props) => {
   return (
     <div className="loader">
       {isLoading && (
-        <div className="loading-screen">
-          <div className="loading-thumb">
-            <div className="loading-bar"></div>
+        <div className="loading__screen">
+          <div className="loading__thumb">
+            <div className="loading__bar"></div>
           </div>
         </div>
       )}

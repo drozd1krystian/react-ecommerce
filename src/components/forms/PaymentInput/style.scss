@@ -4,7 +4,7 @@
   width: 100%;
   margin: 10px 0;
   position: relative;
-  .payment-radio {
+  .payment__radio {
     cursor: pointer;
     position: absolute;
     border-radius: 50%;
@@ -15,7 +15,7 @@
     transform: translate(-50%, -50%);
     visibility: hidden;
   }
-  label {
+  .payment__label {
     position: relative;
     width: 100%;
     height: 100%;
@@ -54,7 +54,7 @@
       background: url("../../../assets/checkmark.svg") center center no-repeat;
     }
   }
-  .payment-radio:checked + label {
+  &__radio:checked + &__label {
     border-color: transparent;
     color: #fff;
     &::after {

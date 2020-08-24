@@ -1,9 +1,9 @@
 @import "../../../assets/variables";
 
-.form-row {
-  input {
+.form--row {
+  .input {
     padding: 0.6rem;
-    margin: 12px 1px 12px 1px;
+    margin: 5px 0px 10px;
     width: 100%;
     border: 2px solid lighten($primary-color, 60%);
     border-radius: 2px;
@@ -16,7 +16,7 @@
     }
   }
 
-  label {
+  .label {
     color: lighten($primary-color, 20%);
   }
 }

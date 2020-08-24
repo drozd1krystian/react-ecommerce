@@ -12,7 +12,6 @@ const HomePage = (props) => {
 
   const toggleFilters = () => {
     const toggle = !showFilters;
-    console.log(window.innerWidth);
     setShowFilters(toggle);
     if (window.innerWidth < 1024) {
       if (showFilters) document.body.style.position = "fixed";

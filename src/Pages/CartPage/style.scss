@@ -1,13 +1,13 @@
 @import "../../assets/variables";
 .content {
   .summary,
-  .cart-items {
+  .cart__items {
     padding: 1rem 2rem;
     h2 {
       border-bottom: 1px solid $primary-color;
     }
   }
-  .cart-items {
+  .cart__items {
     width: 70%;
     img {
       max-width: 150px;
@@ -22,21 +22,24 @@
   }
   .summary {
     width: 30%;
+    margin: 0;
+    border: 0;
     .field {
       display: flex;
       justify-content: space-between;
       padding: 0.3rem 0;
       font-size: 0.9rem;
     }
-    .summary-total {
+    .summary__total {
       border-top: 1px solid #333;
       padding: 1rem 0;
+      margin: 0 1rem;
       font-size: 1.3rem;
     }
   }
 }
 
-.empty-cart {
+.empty__cart {
   display: flex;
   flex-direction: column;
   max-width: 500px;
@@ -63,7 +66,7 @@
 
   .content {
     .summary,
-    .cart-items {
+    .cart__items {
       width: 100%;
     }
   }

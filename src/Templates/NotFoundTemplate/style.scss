@@ -1,14 +1,14 @@
-.big-header {
+.big__header {
   font-size: 6rem;
 }
 
-.not-found {
+.not__found {
   display: flex;
   flex-direction: column;
   height: calc(100vh - 140px);
   align-items: center;
   justify-content: center;
-  .submit {
+  .btn--submit {
     width: 50%;
   }
   .info {
