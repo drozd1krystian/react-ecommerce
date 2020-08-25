@@ -6,6 +6,11 @@
   &__list {
     margin: 25px 0;
   }
+  .sizes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
   &__close {
     width: 40px;
     height: 40px;

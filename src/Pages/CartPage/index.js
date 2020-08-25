@@ -34,14 +34,14 @@ const CartPage = (props) => {
       {cart.length > 0 && (
         <div className="content">
           <div className="cart__items">
-            <h2 className=" text__center p1">Cart</h2>
+            <h2 className=" text--center p1">Cart</h2>
 
             {cart.map((item, index) => (
               <FullCartItem product={item} key={item.productId} index={index} />
             ))}
           </div>
           <div className="summary">
-            <h2 className=" p1 text__center">Summary</h2>
+            <h2 className=" p1 text--center">Summary</h2>
             <div className="wrap">
               <div className="summary__desc p1">
                 <div className="field">
@@ -67,9 +67,9 @@ const CartPage = (props) => {
       {!cart.length > 0 && (
         <div className="empty__cart">
           <img src={emptyCart} alt="Empty Cart" className="img" />
-          <h1 className="text__center">Your cart is empty!</h1>
-          <Link to="/" className="btn btn--light btn--round">
-            <span className="text__center">Continue shopping</span>
+          <h1 className="text--center">Your cart is empty!</h1>
+          <Link to="/" className="btn btn--light btn--round btn--slide">
+            <span className="text--center">Continue shopping</span>
           </Link>
         </div>
       )}

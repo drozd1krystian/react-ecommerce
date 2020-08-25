@@ -1,7 +1,6 @@
 import React from "react";
 import "./style.scss";
-
-//icons
+import { Route } from "react-router-dom";
 
 const CartItem = ({ product }) => {
   return (
@@ -14,7 +13,9 @@ const CartItem = ({ product }) => {
         />
       </div>
       <div className="item__description">
-        <p className="field">{product.productName}</p>
+        <Route to={`product/${product.productId}`}>
+          <p className="field">{product.productName}</p>
+        </Route>
         <p className="field">Amount: {product.amount}</p>
         <p className="field">Size: {product.size}</p>
         <p className="field">

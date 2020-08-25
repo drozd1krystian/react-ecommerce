@@ -18,6 +18,7 @@ import { GrClose } from "react-icons/gr";
 
 const mapState = ({ products }) => ({
   filters: products.filters,
+  sort: products.sort,
 });
 
 const sizesValues = [39, 40, 41, 42, 43, 44, 45, 46];
@@ -33,7 +34,7 @@ const brandsValues = [
 
 const Filters = (props) => {
   const dispatch = useDispatch();
-  const { filters } = useSelector(mapState);
+  const { filters, sort } = useSelector(mapState);
   const [filtersChanged, setFiltersChanged] = useState(false);
   const { showFilters, toggleFilters } = props;
 
@@ -49,13 +50,9 @@ const Filters = (props) => {
 
   const fetchProducts = () => {
     if (filtersChanged) {
-      const filter = {
-        ...filters,
-        start: 0,
-      };
       dispatch(changeFilterType("filter"));
       dispatch(resetStarter());
-      dispatch(fetchProductsStart(filter));
+      dispatch(fetchProductsStart({ filters, sort }));
       if (window.innerWidth < 1024) {
         toggleFilters();
       }

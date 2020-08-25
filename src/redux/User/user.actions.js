@@ -32,6 +32,7 @@ export const userError = (err) => ({
   payload: err,
 });
 
-export const resetAllAuthForms = () => ({
-  type: userTypes.RESET_AUTH_FORMS,
+export const getOrdersStart = (userCredentials) => ({
+  type: userTypes.GET_ORDERS_START,
+  payload: userCredentials,
 });

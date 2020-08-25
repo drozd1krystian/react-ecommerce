@@ -50,7 +50,7 @@ const CheckoutPage = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (payment) {
-      dispatch(checkOut({ cart, payment }));
+      dispatch(checkOut({ cart, payment, cartTotal }));
       setTimeout(() => {
         history.push("/");
       }, 2000);

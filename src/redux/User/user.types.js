@@ -7,8 +7,6 @@ const userTypes = {
   SIGN_UP_USER_START: "SIGN_UP_USER_START",
   SIGN_UP_USER_SUCCESS: "SIGN_UP_USER_SUCCESS",
   USER_ERROR: "USER_ERROR",
-
-  RESET_AUTH_FORMS: "RESET_AUTH_FORMS",
 };
 
 export default userTypes;

@@ -1,11 +1,5 @@
 import cartTypes from "./cart.types";
-
-const scrollTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-};
+import { scrollTop } from "../../helpers/scrollTop";
 
 export const addProductToCart = (product) => (dispatch) => {
   dispatch({ type: cartTypes.SHOW_LOADING, payload: 1000 });

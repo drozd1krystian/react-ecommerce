@@ -17,6 +17,7 @@ import MainLayout from "./layouts/MainLayout";
 import "./style.scss";
 import CheckoutPage from "./Pages/CheckoutPage";
 import NotFoundTempalte from "./Templates/NotFoundTemplate";
+import ProfilPage from "./Pages/ProfilPage";
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -86,6 +87,15 @@ const App = (props) => {
               render={() => (
                 <MainLayout>
                   <CheckoutPage />
+                </MainLayout>
+              )}
+            ></Route>
+            <Route
+              exact
+              path="/profile"
+              render={() => (
+                <MainLayout>
+                  <ProfilPage />
                 </MainLayout>
               )}
             ></Route>

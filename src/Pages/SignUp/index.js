@@ -5,10 +5,7 @@ import "../SignIn/style.scss";
 import { Link, useHistory } from "react-router-dom";
 import FormInput from "../../components/forms/FormInput/index";
 import Error from "../../components/Error/index";
-import {
-  resetAllAuthForms,
-  signUpUserStart,
-} from "../../redux/User/user.actions";
+import { signUpUserStart } from "../../redux/User/user.actions";
 import Button from "../../components/forms/Button";
 
 const mapState = ({ user }) => ({
@@ -39,7 +36,6 @@ const SignUp = (props) => {
 
   useEffect(() => {
     if (currentUser) {
-      dispatch(resetAllAuthForms());
       resetForm();
       history.push("/");
     }

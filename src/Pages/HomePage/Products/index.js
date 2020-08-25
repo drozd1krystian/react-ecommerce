@@ -8,7 +8,7 @@ import {
   changeFilterType,
 } from "../../../redux/Products/products.actions";
 import Button from "../../../components/forms/Button";
-import { useState } from "react";
+import { scrollTop } from "../../../helpers/scrollTop";
 
 // import { addProducts } from "../../../firebase/utils";
 
@@ -17,24 +17,23 @@ import { useState } from "react";
 const mapState = ({ products }) => ({
   products: products.products,
   filters: products.filters,
+  sort: products.sort,
 });
 
 const Products = (props) => {
-  const { products, filters } = useSelector(mapState);
+  const { products, filters, sort } = useSelector(mapState);
   const dispatch = useDispatch();
-  const [initialLoad, setInitialLoad] = useState(true);
-
   const loadMoreProducts = () => {
     dispatch(changeFilterType("load"));
-    dispatch(fetchProductsStart(filters));
+    dispatch(fetchProductsStart({ filters, sort }));
+    scrollTop();
   };
 
   useEffect(() => {
-    if (initialLoad) {
-      dispatch(fetchProductsStart(filters));
-      setInitialLoad(false);
+    if (products.length === 0) {
+      dispatch(fetchProductsStart({ filters, sort }));
     }
-  }, [dispatch, filters, initialLoad]);
+  }, [dispatch, filters, sort, products.length]);
 
   return (
     <div className="products">

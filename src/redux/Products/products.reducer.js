@@ -9,6 +9,10 @@ const INITIAL_STATE = {
     brands: [],
     type: "load",
   },
+  sort: {
+    field: "",
+    direction: "desc",
+  },
 };
 
 const productsReducer = (state = INITIAL_STATE, action) => {
@@ -76,13 +80,17 @@ const productsReducer = (state = INITIAL_STATE, action) => {
       };
 
     case productsTypes.SORT: {
-      const category = action.payload;
+      const { direction } = action.payload;
       const sorted = [
         ...state.products.sort((a, b) => b.salePrice - a.salePrice),
       ];
       return {
         ...state,
-        products: category === "desc" ? sorted : sorted.reverse(),
+        sort: {
+          ...state.sort,
+          direction: direction,
+        },
+        products: direction === "desc" ? sorted : sorted.reverse(),
       };
     }
     default:

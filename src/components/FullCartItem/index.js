@@ -11,6 +11,7 @@ import {
   removeProduct,
 } from "../../redux/Cart/cart.actions";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 const FullCartItem = ({ product, index, ...otherProps }) => {
   const dispatch = useDispatch();
@@ -38,7 +39,9 @@ const FullCartItem = ({ product, index, ...otherProps }) => {
           />
         </div>
         <div className="full__item__info">
-          <p className="field">{product.productName}</p>
+          <Link to={`product/${product.productId}`}>
+            <p className="field">{product.productName}</p>
+          </Link>
           <p className="field">Size: {product.size}</p>
           <span className="field icon" onClick={handleRemoveProduct}>
             <FiTrash2 />

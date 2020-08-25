@@ -43,17 +43,15 @@ export const getCurrentUser = () => {
   });
 };
 
-export const getProducts = (filters) => {
+export const getProducts = (options) => {
   return new Promise((resolve, reject) => {
-    const { start, limit, sizes, brands } = filters;
-
+    const { start, limit, sizes, brands } = options.filters;
     const products = [];
     const productsRef = firestore.collection("products");
 
     if (brands.length > 0) {
       productsRef
         .where("brand", "in", brands)
-        .orderBy("productId")
         .startAfter(start)
         .limit(limit)
         .get()
@@ -72,7 +70,6 @@ export const getProducts = (filters) => {
     } else if (sizes.length > 0) {
       productsRef
         .where("sizes", "array-contains-any", sizes)
-        .orderBy("sizes")
         .startAfter(start)
         .limit(limit)
         .get()
@@ -86,7 +83,6 @@ export const getProducts = (filters) => {
     if (sizes.length === 0 && brands.length === 0)
       productsRef
         .orderBy("productId")
-        .orderBy("salePrice", "asc")
         .startAfter(start)
         .limit(limit)
         .get()
@@ -106,18 +102,35 @@ export const checkOutUser = (order, userId) => {
     .doc();
 
   const timestamp = new Date();
-  const { cart, payment } = order;
+  const { cart, payment, cartTotal } = order;
 
   try {
-    console.log(cart);
     ordersRef.set({
       cart,
       payment,
       createdDate: timestamp,
+      cartTotal,
     });
   } catch (e) {
     console.log(e);
   }
+};
+
+export const getOrders = (userCredentials) => {
+  return new Promise((resolve, reject) => {
+    const orders = [];
+    const { id } = userCredentials;
+    const ordersRef = firestore
+      .collection("users")
+      .doc(id)
+      .collection("orders");
+
+    ordersRef.get().then((snapshot) => {
+      snapshot.forEach((doc) => orders.push({ id: doc.id, ...doc.data() }));
+      if (orders.length > 0) resolve(orders);
+      else reject(orders);
+    });
+  });
 };
 
 export const addProducts = (arr) => {

@@ -122,14 +122,17 @@
       display: block;
     }
   }
-  .details-wrapper .wrap:nth-child(2) {
+  .details__wrapper {
+    padding: 0 16px;
+  }
+  .details__wrapper .wrap:nth-child(2) {
     display: none;
   }
 
-  .details-wrapper .billing {
+  .details__wrapper .billing {
     margin-left: 0;
   }
-  .cart-summary {
+  .cart__summary {
     display: none;
   }
 }
