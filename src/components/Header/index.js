@@ -43,8 +43,9 @@ const Header = (props) => {
                   Hello {currentUser.displayName}
                 </h3>
                 <ul className="mt1 profile">
-                  <li className="field">Your account</li>
-                  <li className="field">Your orders</li>
+                  <li className="field">
+                    <Link to="/profile">Your account</Link>
+                  </li>
                 </ul>
                 <Button onClick={signOut}>Logout</Button>
               </div>

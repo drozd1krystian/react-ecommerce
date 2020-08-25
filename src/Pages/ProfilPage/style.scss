@@ -58,6 +58,26 @@
   }
 }
 
+.height--full {
+  height: calc(100vh - 160px);
+}
+
+.icon--big {
+  font-size: 60px;
+  color: #333;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .btn {
+    width: 30%;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .column {
     padding: 0;

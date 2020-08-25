@@ -1,14 +1,27 @@
 import productsTypes from "./products.types";
 
-export const fetchProductsStart = (filters) => ({
-  type: productsTypes.FETCH_PRODUCTS_START,
-  payload: filters,
-});
+export const fetchProductsStart = (filters) => (dispatch) => {
+  dispatch({
+    type: productsTypes.LOADING,
+    payload: true,
+  });
+  dispatch({
+    type: productsTypes.FETCH_PRODUCTS_START,
+    payload: filters,
+  });
+};
 
-export const fetchProductsSuccess = (products) => ({
-  type: productsTypes.FETCH_PRODUCTS_SUCCESS,
-  payload: products,
-});
+export const fetchProductsSuccess = (products) => (dispatch) => {
+  dispatch({
+    type: productsTypes.LOADING,
+    payload: false,
+  });
+
+  dispatch({
+    type: productsTypes.FETCH_PRODUCTS_SUCCESS,
+    payload: products,
+  });
+};
 
 export const addFilter = (filter) => ({
   type: productsTypes.ADD_FILTER,

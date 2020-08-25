@@ -2,9 +2,10 @@ import productsTypes from "./products.types";
 
 const INITIAL_STATE = {
   products: [],
+  loading: true,
   filters: {
     start: 0,
-    limit: 5,
+    limit: 20,
     sizes: [],
     brands: [],
     type: "load",
@@ -91,6 +92,12 @@ const productsReducer = (state = INITIAL_STATE, action) => {
           direction: direction,
         },
         products: direction === "desc" ? sorted : sorted.reverse(),
+      };
+    }
+    case productsTypes.LOADING: {
+      return {
+        ...state,
+        loading: action.payload,
       };
     }
     default:

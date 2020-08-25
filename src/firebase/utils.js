@@ -52,6 +52,7 @@ export const getProducts = (options) => {
     if (brands.length > 0) {
       productsRef
         .where("brand", "in", brands)
+        .orderBy("productId")
         .startAfter(start)
         .limit(limit)
         .get()
@@ -70,6 +71,7 @@ export const getProducts = (options) => {
     } else if (sizes.length > 0) {
       productsRef
         .where("sizes", "array-contains-any", sizes)
+        .orderBy("productId")
         .startAfter(start)
         .limit(limit)
         .get()

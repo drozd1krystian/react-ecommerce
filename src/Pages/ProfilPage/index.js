@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
 import { useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { getOrders } from "../../firebase/utils";
+import Skeleton from "react-loading-skeleton";
+import { FaRegSadTear } from "react-icons/fa";
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -11,20 +13,24 @@ const mapState = ({ user }) => ({
 const ProfilPage = (props) => {
   const { currentUser } = useSelector(mapState);
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const timestampToDate = (timestamp) => {
     return timestamp.toDate().toLocaleDateString();
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       if (!currentUser) return;
-      try {
-        const data = await getOrders(currentUser);
-        setOrders(data);
-      } catch (e) {
-        setOrders([]);
-      }
+      setTimeout(async () => {
+        try {
+          const data = await getOrders(currentUser);
+          setOrders(data);
+        } catch (e) {
+          setOrders([]);
+        }
+        setLoading(false);
+      }, 1000);
     };
     fetchData();
   }, [currentUser]);
@@ -32,8 +38,26 @@ const ProfilPage = (props) => {
   return (
     <div className="column">
       {!currentUser && <Redirect to="/" />}
-      {orders.length === 0 && (
-        <h2 className=" p1 text--center">No orders completed</h2>
+      {orders.length === 0 && loading && (
+        <>
+          <Skeleton width={`100%`} height={20} />
+          {Array(10)
+            .fill()
+            .map((_, index) => (
+              <Skeleton width={`100%`} height={300} key={index} />
+            ))}
+        </>
+      )}
+      {orders.length === 0 && !loading && (
+        <div className="height--full empty">
+          <h2 className=" p1 text--center">No orders completed</h2>
+          <p className="icon--big text--center ">
+            <FaRegSadTear />
+          </p>
+          <Link to="/" className="btn btn--light btn--round btn--slide">
+            <span>Continue Shopping</span>
+          </Link>
+        </div>
       )}
       {orders.length > 0 && (
         <>

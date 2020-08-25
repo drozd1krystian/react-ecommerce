@@ -15,7 +15,7 @@ const Product = (props) => {
           </div>
           <div className="details">
             <span className="details__name">{product.productName}</span>
-            <span className="details__price"> {product.salePrice} $</span>
+            <span className="details__price">{`${product.salePrice} $`}</span>
           </div>
         </div>
       </Link>

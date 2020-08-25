@@ -9,6 +9,9 @@ import {
 } from "../../../redux/Products/products.actions";
 import Button from "../../../components/forms/Button";
 import { scrollTop } from "../../../helpers/scrollTop";
+import { useState } from "react";
+import SkeletonCard from "../../../components/SkeletonCard";
+import { FaRegSadTear } from "react-icons/fa";
 
 // import { addProducts } from "../../../firebase/utils";
 
@@ -16,12 +19,15 @@ import { scrollTop } from "../../../helpers/scrollTop";
 
 const mapState = ({ products }) => ({
   products: products.products,
+  loading: products.loading,
   filters: products.filters,
   sort: products.sort,
 });
 
 const Products = (props) => {
-  const { products, filters, sort } = useSelector(mapState);
+  const { products, filters, sort, loading } = useSelector(mapState);
+  const [cards, setCards] = useState([]);
+
   const dispatch = useDispatch();
   const loadMoreProducts = () => {
     dispatch(changeFilterType("load"));
@@ -30,22 +36,33 @@ const Products = (props) => {
   };
 
   useEffect(() => {
-    if (products.length === 0) {
-      dispatch(fetchProductsStart({ filters, sort }));
-    }
-  }, [dispatch, filters, sort, products.length]);
+    if (loading) dispatch(fetchProductsStart({ filters, sort }));
+
+    const generateSlides = () => {
+      return loading
+        ? Array(10)
+            .fill()
+            .map((_, id) => <SkeletonCard key={id} />)
+        : products.map((el, index) => <Product key={index} product={el} />);
+    };
+    const data = generateSlides();
+    setCards(data);
+  }, [dispatch, filters, sort, products, loading]);
 
   return (
     <div className="products">
-      {/* <div>
-        <button onClick={() => addProducts(all)}>Add</button>
-      </div> */}
-      {products.map((el, index) => {
-        return <Product key={index} product={el}></Product>;
-      })}
+      {cards}
+      {cards.length === 0 && (
+        <div className="height--full empty">
+          <h2 className=" p1 text--center">No products fullfill criteria</h2>
+          <p className="icon--big text--center ">
+            <FaRegSadTear />
+          </p>
+        </div>
+      )}
       <Button
         onClick={loadMoreProducts}
-        disabled={products.length < filters.limit}
+        disabled={cards.length < filters.limit}
       >
         Load More
       </Button>

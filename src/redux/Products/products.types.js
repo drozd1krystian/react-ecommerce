@@ -8,6 +8,7 @@ const productsTypes = {
   CLEAR_FILTERS: "CLEAR_FILTERS",
   RESET_STARTER: "RESET_STARTER",
   SORT: "SORT",
+  LOADING: "LOADING",
 };
 
 export default productsTypes;
