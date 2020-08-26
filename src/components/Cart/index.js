@@ -16,7 +16,6 @@ const Cart = (props) => {
   const { cart, loading } = useSelector(mapState);
   const cartDiv = useRef(null);
   const location = useLocation();
-
   useEffect(() => {
     const divClassList = cartDiv.current.classList;
     if (loading.isLoading) {
@@ -32,7 +31,14 @@ const Cart = (props) => {
 
   return (
     <div className="link__wrapper" ref={cartDiv}>
-      <Link to="/cart" className="link">
+      <Link
+        to="/cart"
+        className={
+          location.pathname === "/cart"
+            ? "link link--border link--current"
+            : "link link--border"
+        }
+      >
         <span className="icon">
           <BsBag />
         </span>

@@ -10,7 +10,7 @@ import {
 import Button from "../../../components/forms/Button";
 import { scrollTop } from "../../../helpers/scrollTop";
 import { useState } from "react";
-import SkeletonCard from "../../../components/SkeletonCard";
+import SkeletonCard from "../../../components/Skeletons/SkeletonCard";
 import { FaRegSadTear } from "react-icons/fa";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 

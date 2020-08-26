@@ -92,9 +92,7 @@ const Filters = (props) => {
   };
 
   return (
-    <div
-      className={showFilters ? "show-filters filters column" : "filters column"}
-    >
+    <div className={showFilters ? "show-filters filters" : "filters"}>
       <span className="filters__close" onClick={toggleFilters}>
         <GrClose />
       </span>

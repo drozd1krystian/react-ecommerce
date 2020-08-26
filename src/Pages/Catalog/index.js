@@ -7,7 +7,7 @@ import { useState } from "react";
 import { IoMdOptions } from "react-icons/io";
 import Select from "../../components/Select";
 
-const HomePage = (props) => {
+const Catalog = (props) => {
   const [showFilters, setShowFilters] = useState(true);
 
   const toggleFilters = () => {
@@ -33,4 +33,4 @@ const HomePage = (props) => {
   );
 };
 
-export default HomePage;
+export default Catalog;

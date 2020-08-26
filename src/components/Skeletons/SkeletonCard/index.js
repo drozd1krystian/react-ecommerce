@@ -1,5 +1,5 @@
 import React from "react";
-import "../Product/style.scss";
+import "../../../components/Product/style.scss";
 import "./style.scss";
 
 import Skeleton from "react-loading-skeleton";

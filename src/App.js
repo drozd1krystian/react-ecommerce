@@ -6,7 +6,7 @@ import { checkUserSession } from "./redux/User/user.actions";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 // pages
-import HomePage from "./Pages/HomePage/index";
+import Catalog from "./Pages/Catalog/index";
 import SignIn from "./Pages/SignIn/index";
 import SignUp from "./Pages/SignUp/index";
 import ProductDetails from "./Pages/ProductDetails";
@@ -38,10 +38,10 @@ const App = (props) => {
           <Switch location={location}>
             <Route
               exact
-              path="/"
+              path="/catalog"
               render={() => (
                 <MainLayout>
-                  <HomePage />
+                  <Catalog />
                 </MainLayout>
               )}
             ></Route>
