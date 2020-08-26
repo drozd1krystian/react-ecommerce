@@ -4,6 +4,7 @@ import Select from "react-select";
 import { sortProducts } from "../../redux/Products/products.actions";
 import { scrollTop } from "../../helpers/scrollTop";
 import { useDispatch } from "react-redux";
+import productsTypes from "../../redux/Products/products.types";
 
 const options = [
   { value: "desc", label: "Price: from highest", field: "salePrice" },
@@ -15,6 +16,10 @@ const MySelect = (props) => {
   const sort = (option) => {
     const { value, field } = option;
     dispatch(sortProducts({ direction: value, field }));
+    dispatch({ type: productsTypes.LOADING, payload: true });
+    setTimeout(() => {
+      dispatch({ type: productsTypes.LOADING, payload: false });
+    }, 1000);
     scrollTop();
   };
 

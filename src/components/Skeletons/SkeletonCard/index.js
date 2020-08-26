@@ -10,7 +10,12 @@ const SkeletonCard = (props) => {
       <div className="card__content">
         <div className="photo--default"></div>
         <div className="details">
-          <Skeleton width={200} />
+          <span className="details__name">
+            <Skeleton width={`100%`} />
+          </span>
+          <span className="details__price">
+            <Skeleton width={`100%`} />
+          </span>
         </div>
       </div>
     </div>

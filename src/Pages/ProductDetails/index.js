@@ -74,7 +74,7 @@ const ProductDetails = (props) => {
     const getFiveRandomProducts = () => {
       let arr = [];
       if (products.length > 0) {
-        for (let i = 0; i < 1; i++) {
+        for (let i = 0; i < 7; i++) {
           let value = Math.floor(Math.random() * products.length);
           if (!arr.includes(value)) arr.push(value);
           else i--;

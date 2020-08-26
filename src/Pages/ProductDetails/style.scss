@@ -50,7 +50,7 @@ button {
     height: 5px;
     width: 10px;
   }
-  .wrapper {
+  .card {
     min-width: 23%;
   }
 }
@@ -105,7 +105,7 @@ button {
     &::-webkit-scrollbar {
       -webkit-appearance: initial;
     }
-    .wrapper {
+    .card {
       min-width: 30%;
       padding: 0 4px 0 4px;
     }
@@ -117,12 +117,12 @@ button {
 }
 
 @media screen and (max-width: 767px) {
-  .similiar .wrapper {
+  .similiar .card {
     min-width: 70%;
   }
 }
 @media screen and (max-width: 767px) and (orientation: landscape) {
-  .similiar .wrapper {
+  .similiar .card {
     min-width: 30%;
   }
 }

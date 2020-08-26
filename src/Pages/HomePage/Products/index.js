@@ -12,10 +12,7 @@ import { scrollTop } from "../../../helpers/scrollTop";
 import { useState } from "react";
 import SkeletonCard from "../../../components/SkeletonCard";
 import { FaRegSadTear } from "react-icons/fa";
-
-// import { addProducts } from "../../../firebase/utils";
-
-// import all from "../../../assets/nike_data.json";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const mapState = ({ products }) => ({
   products: products.products,
@@ -36,14 +33,19 @@ const Products = (props) => {
   };
 
   useEffect(() => {
-    if (loading) dispatch(fetchProductsStart({ filters, sort }));
+    if (loading && products.length === 0)
+      dispatch(fetchProductsStart({ filters, sort }));
 
     const generateSlides = () => {
       return loading
-        ? Array(10)
+        ? Array(products.length || 10)
             .fill()
             .map((_, id) => <SkeletonCard key={id} />)
-        : products.map((el, index) => <Product key={index} product={el} />);
+        : products.map((el, index) => (
+            <CSSTransition key={index} timeout={500} classNames="item">
+              <Product key={index} product={el} />
+            </CSSTransition>
+          ));
     };
     const data = generateSlides();
     setCards(data);
@@ -51,7 +53,10 @@ const Products = (props) => {
 
   return (
     <div className="products">
-      {cards}
+      <TransitionGroup className="pro" component={null}>
+        {cards}
+      </TransitionGroup>
+
       {cards.length === 0 && (
         <div className="height--full empty">
           <h2 className=" p1 text--center">No products fullfill criteria</h2>

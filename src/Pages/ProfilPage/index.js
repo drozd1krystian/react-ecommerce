@@ -3,7 +3,7 @@ import "./style.scss";
 import { useSelector } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { getOrders } from "../../firebase/utils";
-import Skeleton from "react-loading-skeleton";
+import OrderCard from "./../../components/Skeletons/OrderCard";
 import { FaRegSadTear } from "react-icons/fa";
 
 const mapState = ({ user }) => ({
@@ -39,14 +39,13 @@ const ProfilPage = (props) => {
     <div className="column">
       {!currentUser && <Redirect to="/" />}
       {orders.length === 0 && loading && (
-        <>
-          <Skeleton width={`100%`} height={20} />
+        <div className="orders">
           {Array(10)
             .fill()
             .map((_, index) => (
-              <Skeleton width={`100%`} height={300} key={index} />
+              <OrderCard key={index} />
             ))}
-        </>
+        </div>
       )}
       {orders.length === 0 && !loading && (
         <div className="height--full empty">
@@ -64,7 +63,7 @@ const ProfilPage = (props) => {
           <h2 className=" p1 text--center">Orders Completed</h2>
           <div className="orders">
             {orders.map((order) => (
-              <div className="order" key={order.id}>
+              <div className="order">
                 <div className="order__header">
                   <span className="field">ID: {order.id}</span>
                   <span className="field">
