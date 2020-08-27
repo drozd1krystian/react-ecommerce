@@ -28,7 +28,7 @@ const CartPage = (props) => {
   }, [setCartValue, cart]);
 
   return (
-    <div>
+    <div className="height--full">
       <LoadingScreen />
 
       {cart.length > 0 && (

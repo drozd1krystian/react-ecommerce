@@ -18,6 +18,8 @@ import "./style.scss";
 import CheckoutPage from "./Pages/CheckoutPage";
 import NotFoundTempalte from "./Templates/NotFoundTemplate";
 import ProfilPage from "./Pages/ProfilPage";
+import HomePage from "./Pages/HomePage";
+import FullHeightLayout from "./layouts/FullHeightLayout";
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -36,6 +38,15 @@ const App = (props) => {
           key={location.pathname}
         >
           <Switch location={location}>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <MainLayout>
+                  <HomePage />
+                </MainLayout>
+              )}
+            ></Route>
             <Route
               exact
               path="/catalog"
@@ -59,7 +70,9 @@ const App = (props) => {
               path="/signin"
               render={() => (
                 <MainLayout>
-                  <SignIn />
+                  <FullHeightLayout>
+                    <SignIn />
+                  </FullHeightLayout>
                 </MainLayout>
               )}
             ></Route>

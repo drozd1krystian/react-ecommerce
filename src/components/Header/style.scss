@@ -6,8 +6,12 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid lighten($primary-color, 60%);
-  position: relative;
-
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  width: 100%;
+  transition: all 0.4s ease;
   .burger {
     display: none;
     padding: 1rem 0;
@@ -114,6 +118,10 @@
   }
 }
 
+.link--mobile {
+  display: none;
+}
+
 .profile .field {
   margin-left: 10px;
 }
@@ -123,6 +131,10 @@
   top: 0;
   right: 0;
   left: 0;
+}
+
+.header--fixed {
+  background: #fff;
 }
 
 @media screen and (max-width: 767px) {
@@ -135,13 +147,10 @@
     }
 
     .logo {
-      order: -1;
       position: relative;
-      width: 100%;
       transform: translate(0);
       left: 0;
       top: 0;
-      margin-top: 10px;
       .logo__header {
         justify-content: center;
       }
@@ -185,6 +194,14 @@
         font-size: 1.5rem;
       }
     }
+  }
+
+  .link--mobile {
+    display: block;
+  }
+
+  .link--wide {
+    display: none;
   }
 
   .active {

@@ -131,8 +131,8 @@ const SignUp = (props) => {
         </div>
 
         <Button>Sign Up</Button>
-        <p className="mt1">
-          Already have an account?{" "}
+        <p className="mt1 text--center">
+          Already have an account? {""}
           <Link to="/signin" className="decoration">
             Sign in.
           </Link>

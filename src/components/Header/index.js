@@ -12,6 +12,7 @@ import SignIn from "../../Pages/SignIn/index";
 import Cart from "../Cart/index";
 import Button from "../forms/Button";
 import { useRef } from "react";
+import { useEffect } from "react";
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -22,20 +23,37 @@ const Header = (props) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const menuRef = useRef();
+  const headerRef = useRef();
   const { pathname } = location;
   const signOut = () => dispatch(signOutUserStart());
 
   const toggleMenu = () => {
     menuRef.current.classList.toggle("active");
-    if (window.innerWidth < 1024) {
+    if (window.innerWidth < 767) {
       if (menuRef.current.classList.contains("active"))
         document.body.classList.add("body--fixed");
       else document.body.classList.remove("body--fixed");
     }
   };
 
+  useEffect(() => {
+    if (location.pathname === "/") {
+      headerRef.current.style.position = "fixed";
+    }
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        headerRef.current.classList.add("header--fixed");
+      } else {
+        headerRef.current.classList.remove("header--fixed");
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+
   return (
-    <header className="header">
+    <header className="header" ref={headerRef}>
       <div className="burger" onClick={toggleMenu}>
         <div className="line line--1"></div>
         <div className="line line--2"></div>
@@ -64,6 +82,11 @@ const Header = (props) => {
             Catalog
           </Link>
         </li>
+        <li className="link__wrapper link--mobile" onClick={toggleMenu}>
+          <Link to={currentUser ? "/profile" : "/signin"} className="link">
+            Profile
+          </Link>
+        </li>
       </ul>
       <div className="logo">
         <Link to="/">
@@ -73,7 +96,7 @@ const Header = (props) => {
         </Link>
       </div>
       <ul className="side__links">
-        <li className="link__wrapper">
+        <li className="link__wrapper link--wide">
           <Link
             to={currentUser ? "/profile" : "/signin"}
             className={

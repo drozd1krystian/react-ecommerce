@@ -5,7 +5,6 @@
   display: flex;
   margin: 0 auto;
   flex-direction: column;
-  padding-bottom: 2rem;
   z-index: 100;
   position: relative;
   padding: 0 1rem 2rem 1rem;
@@ -13,4 +12,10 @@
 
 .decoration {
   color: $aluxury-color;
+}
+
+.align--center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

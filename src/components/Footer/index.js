@@ -27,7 +27,7 @@ const Footer = (props) => {
       <div className="boxes">
         <div className="box">
           <h2 className="box__header">
-            <Link>About Us</Link>
+            <Link to="/">About Us</Link>
             <div className="expand" onClick={() => handleExpandList(1)}>
               {!expandList[1] ? <AiOutlinePlus /> : <AiOutlineMinus />}
             </div>
@@ -38,25 +38,25 @@ const Footer = (props) => {
             }
           >
             <li className="list__item">
-              <Link>About Us</Link>{" "}
+              <Link to="/">About Us</Link>{" "}
             </li>
             <li className="list__item">
-              <Link>Community</Link>{" "}
+              <Link to="/">Community</Link>{" "}
             </li>
             <li className="list__item">
-              <Link>Jobs</Link>
+              <Link to="/">Jobs</Link>
             </li>
             <li className="list__item">
-              <Link>Shipping</Link>
+              <Link to="/">Shipping</Link>
             </li>
             <li className="list__item">
-              <Link>Contact Us</Link>
+              <Link to="/">Contact Us</Link>
             </li>
           </ul>
         </div>
         <div className="box">
           <h2 className="box__header">
-            <Link>Our Services</Link>
+            <Link to="/">Our Services</Link>
             <div className="expand" onClick={() => handleExpandList(2)}>
               {!expandList[2] ? <AiOutlinePlus /> : <AiOutlineMinus />}
             </div>
@@ -67,25 +67,25 @@ const Footer = (props) => {
             }
           >
             <li className="list__item">
-              <Link>Free Shipping</Link>
+              <Link to="/">Free Shipping</Link>
             </li>
             <li className="list__item">
-              <Link>Free Returns</Link>
+              <Link to="/">Free Returns</Link>
             </li>
             <li className="list__item">
-              <Link>Franchising</Link>
+              <Link to="/">Franchising</Link>
             </li>
             <li className="list__item">
-              <Link>Terms & Conditions</Link>
+              <Link to="/">Terms & Conditions</Link>
             </li>
             <li className="list__item">
-              <Link>Privacy Policy</Link>
+              <Link to="/">Privacy Policy</Link>
             </li>
           </ul>
         </div>
         <div className="box">
           <h2 className="box__header">
-            <Link>Information</Link>
+            <Link to="/">Information</Link>
             <div className="expand" onClick={() => handleExpandList(3)}>
               {!expandList[3] ? <AiOutlinePlus /> : <AiOutlineMinus />}
             </div>
@@ -96,36 +96,36 @@ const Footer = (props) => {
             }
           >
             <li className="list__item">
-              <Link>Payment Methods</Link>
+              <Link to="/">Payment Methods</Link>
             </li>
             <li className="list__item">
-              <Link>Shipping Methods</Link>
+              <Link to="/">Shipping Methods</Link>
             </li>
             <li className="list__item">
-              <Link>Returns</Link>
+              <Link to="/">Returns</Link>
             </li>
             <li className="list__item">
-              <Link>Products Conformity</Link>
+              <Link to="/">Products Conformity</Link>
             </li>
             <li className="list__item">
-              <Link>Delivery</Link>
+              <Link to="/">Delivery</Link>
             </li>
           </ul>
         </div>
         <div className="box">
           <h2 className="box__header">Socials</h2>
           <div className="icons">
-            <Link>
+            <Link to="/">
               <div className="social__icon">
                 <AiOutlineTwitter />
               </div>
             </Link>
-            <Link>
+            <Link to="/">
               <div className="social__icon">
                 <FaFacebookF />
               </div>
             </Link>
-            <Link>
+            <Link to="/">
               <div className="social__icon">
                 <FaInstagram />
               </div>
@@ -139,13 +139,13 @@ const Footer = (props) => {
         </span>
         <div className="terms">
           <span className="term">
-            <Link>Terms Of Sell</Link>
+            <Link to="/">Terms Of Sell</Link>
           </span>
           <span className="term">
-            <Link>Terms Of Use</Link>
+            <Link to="/">Terms Of Use</Link>
           </span>
           <span className="term">
-            <Link>Privacy Policy </Link>
+            <Link to="/">Privacy Policy </Link>
           </span>
         </div>
       </div>
