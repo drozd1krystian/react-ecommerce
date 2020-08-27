@@ -46,7 +46,7 @@ const SignIn = (props) => {
   return (
     <div className="page">
       <form className="form" onSubmit={handleSubmit}>
-        <h2 className="p1 text--center mb1">Sign In</h2>
+        <h2 className="p1 text--center mb1 ">Sign In</h2>
         <FormInput
           type="email"
           name="email"
@@ -67,7 +67,7 @@ const SignIn = (props) => {
           required
         />
         <Button>Sign In</Button>
-        <p className="mt1 text--center">
+        <p className="mt1 text--center ">
           Don't have an account?{" "}
           <Link to="/signup" className="decoration">
             Sign up.

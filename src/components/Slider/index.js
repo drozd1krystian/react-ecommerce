@@ -5,6 +5,8 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import Slide from "./Slide";
 
 import banner1 from "../../assets/banner1.jpg";
+import banner2 from "../../assets/banner2.jpg";
+import banner3 from "../../assets/banner3.jpg";
 
 const slides = [
   {
@@ -19,14 +21,14 @@ const slides = [
     title: "Find your\nstyle",
     subTitle: "Keep up with the modern designs.",
     btnContent: "Shop now",
-    image: banner1,
+    image: banner2,
   },
   {
     id: 2,
     title: "Summer Sale\n60% Off",
     subTitle: "Latest collection has just dropped!",
     btnContent: "Shop now",
-    image: banner1,
+    image: banner3,
   },
 ];
 

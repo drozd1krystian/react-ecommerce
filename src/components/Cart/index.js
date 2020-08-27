@@ -30,7 +30,7 @@ const Cart = (props) => {
       : 0;
 
   return (
-    <div className="link__wrapper" ref={cartDiv}>
+    <li className="link__wrapper" ref={cartDiv}>
       <Link
         to="/cart"
         className={
@@ -58,7 +58,7 @@ const Cart = (props) => {
           </Link>
         </div>
       )}
-    </div>
+    </li>
   );
 };
 

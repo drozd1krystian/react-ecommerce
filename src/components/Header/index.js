@@ -25,6 +25,7 @@ const Header = (props) => {
   const menuRef = useRef();
   const headerRef = useRef();
   const { pathname } = location;
+
   const signOut = () => dispatch(signOutUserStart());
 
   const toggleMenu = () => {
@@ -37,18 +38,24 @@ const Header = (props) => {
   };
 
   useEffect(() => {
-    if (location.pathname === "/") {
-      headerRef.current.style.position = "fixed";
-    }
+    const headerClassList = headerRef.current.classList;
+    console.log(location.pathname === "/");
+
     const handleScroll = () => {
       if (window.scrollY > 20) {
-        headerRef.current.classList.add("header--fixed");
+        headerClassList.add("header--fixed");
+        headerClassList.remove("header--top");
       } else {
-        headerRef.current.classList.remove("header--fixed");
+        headerClassList.remove("header--fixed");
+        headerClassList.add("header--top");
       }
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    if (location.pathname === "/") {
+      headerRef.current.style.position = "fixed";
+      headerClassList.add("header--top");
 
+      window.addEventListener("scroll", handleScroll, { passive: true });
+    }
     return () => window.removeEventListener("scroll", handleScroll);
   });
 
@@ -130,9 +137,7 @@ const Header = (props) => {
             </div>
           )}
         </li>
-        <li>
-          <Cart />
-        </li>
+        <Cart />
       </ul>
     </header>
   );

@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 
 const Slide = ({ title, subTitle, btnContent, image, isActive }) => {
   return (
-    <div className={isActive ? "slide slide--active" : "slide"}>
-      {/* <img src={image} alt={title} className="slide__img" /> */}
+    <div
+      className={isActive ? "slide slide--active" : "slide"}
+      style={{ backgroundImage: `url(${image})` }}
+    >
       <div className="slide__content">
         <div className="slide__title">
           <h2 className="">{title}</h2>
