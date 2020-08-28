@@ -1,19 +1,14 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
 
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
-import { AiOutlineLeft } from "react-icons/ai";
-import { AiOutlineRight } from "react-icons/ai";
-
 import { addProductToCart } from "../../redux/Cart/cart.actions";
-import Product from "../../components/Product/index";
 import Error from "../../components/Error/index";
 import LoadingScreen from "../../components/LoadingScreen";
 import SizeRadioButton from "../../components/forms/SizeRadioButton";
-
 import NotFoundTempalte from "../../Templates/NotFoundTemplate/index";
+import Carousel from "../../components/Carousel";
 
 const mapState = ({ products }) => ({
   products: products.products,
@@ -22,7 +17,6 @@ const mapState = ({ products }) => ({
 const ProductDetails = (props) => {
   const { productId } = useParams();
   const { products } = useSelector(mapState);
-  const scroller = useRef(null);
   const dispatch = useDispatch();
   const [size, setSize] = useState(null);
   const [errors, setErrors] = useState([]);
@@ -87,19 +81,6 @@ const ProductDetails = (props) => {
     setSimiliarProducts(arr.map((el) => products[el]));
   }, [setSimiliarProducts, products]);
 
-  const scrollRight = () => {
-    scroller.current.scrollBy({
-      left: Math.floor(scroller.current.offsetWidth * 23 * 0.01),
-      behavior: "smooth",
-    });
-  };
-  const scrollLeft = () => {
-    scroller.current.scrollBy({
-      left: -Math.floor(scroller.current.offsetWidth * 23 * 0.01),
-      behavior: "smooth",
-    });
-  };
-
   return (
     <>
       <LoadingScreen />
@@ -141,20 +122,7 @@ const ProductDetails = (props) => {
               </button>
             </div>
           </div>
-          <h3 className="p1">Similiar products</h3>
-          <div className="similiar">
-            <div className="similiar__products" ref={scroller}>
-              {similiarProducts.map((el, index) => {
-                return <Product key={`similar-${index}`} product={el} />;
-              })}
-            </div>
-            <div className="btn--left" onClick={scrollLeft}>
-              <AiOutlineLeft />
-            </div>
-            <div className="btn--right" onClick={scrollRight}>
-              <AiOutlineRight />
-            </div>
-          </div>
+          <Carousel header="Similiar Products" />
         </>
       )}
     </>

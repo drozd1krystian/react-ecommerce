@@ -37,55 +37,6 @@ button {
   font-size: 1.5rem;
 }
 
-.similiar__products {
-  display: flex;
-  position: relative;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-
-  &::-webkit-scrollbar-thumb {
-    background: #333;
-  }
-
-  &::-webkit-scrollbar {
-    -webkit-appearance: none;
-    height: 5px;
-    width: 10px;
-  }
-  .card {
-    min-width: 23%;
-  }
-}
-
-.similiar {
-  position: relative;
-  .btn--left,
-  .btn--right {
-    padding: 1rem 1.2rem;
-    border-radius: 50%;
-    background: $aluxury-color;
-    color: $secondary-color;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    opacity: 0;
-    cursor: pointer;
-  }
-  .btn--left {
-    left: 20px;
-  }
-  .btn--right {
-    right: 20px;
-  }
-
-  &:hover .btn--left,
-  &:hover .btn--right {
-    opacity: 1;
-  }
-}
-
 @media screen and (max-width: 1023px) {
   .content {
     flex-direction: column;
@@ -102,30 +53,6 @@ button {
     .description {
       width: 100%;
     }
-  }
-  .similiar {
-    &::-webkit-scrollbar {
-      -webkit-appearance: initial;
-    }
-    .card {
-      min-width: 30%;
-      padding: 0 4px 0 4px;
-    }
-  }
-  .similiar .btn-left,
-  .similiar .btn-right {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .similiar .card {
-    min-width: 70%;
-  }
-}
-@media screen and (max-width: 767px) and (orientation: landscape) {
-  .similiar .card {
-    min-width: 30%;
   }
 }
 

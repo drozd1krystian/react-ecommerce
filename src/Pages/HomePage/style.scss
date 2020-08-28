@@ -1,0 +1,130 @@
+@import "../../assets/variables";
+
+.home__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &::before {
+    content: "";
+    display: inline-block;
+    margin: 0 20px;
+    width: 50px;
+    height: 2px;
+    background: $primary-color;
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    margin: 0 20px;
+    width: 50px;
+    height: 2px;
+    background: $primary-color;
+  }
+}
+
+.home__subheader {
+  font-weight: 100;
+  font-size: 0.9rem;
+}
+
+.banner {
+  height: 400px;
+  margin-top: 50px;
+  background: url("../../assets/ad.jpg") no-repeat;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: $secondary-color;
+
+  .banner__header {
+    font-family: "Nanum Pen Script", cursive;
+    font-size: 3rem;
+  }
+
+  .banner__header--big {
+    font-size: 5rem;
+    text-transform: uppercase;
+  }
+  &__button {
+    margin-top: 25px;
+  }
+  &__button a {
+    padding: 1rem 3rem;
+    border-radius: 30px;
+    background: $secondary-color;
+    transition: all 0.4s ease;
+    color: $primary-color;
+
+    &:hover {
+      background: $aluxury-color;
+      color: $secondary-color;
+    }
+  }
+}
+
+.carousel__wrapper {
+  margin: 0 10px;
+}
+
+.cards__container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 40px 10px;
+
+  .card__wrapper {
+    width: 25%;
+    padding: 16px;
+
+    .card {
+      padding: 30px 16px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      border: 1px solid lighten($primary-color, 70%);
+      box-shadow: 1px 3px 6px 1px lighten($primary-color, 70%);
+      &__icon {
+        margin-right: 20px;
+        font-size: 3.3rem;
+        color: $aluxury-color;
+      }
+      &__header {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      &__subheader {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .banner {
+    background-position-x: -400px;
+
+    .banner__header {
+      font-family: "Nanum Pen Script", cursive;
+      font-size: 2.5rem;
+    }
+
+    .banner__header--big {
+      font-size: 4rem;
+      text-transform: uppercase;
+    }
+  }
+
+  .cards__container .card__wrapper {
+    width: 100%;
+    padding: 5px 16px;
+    .card {
+      margin-bottom: 10px;
+    }
+  }
+}

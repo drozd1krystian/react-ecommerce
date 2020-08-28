@@ -39,7 +39,6 @@ const Header = (props) => {
 
   useEffect(() => {
     const headerClassList = headerRef.current.classList;
-    console.log(location.pathname === "/");
 
     const handleScroll = () => {
       if (window.scrollY > 20) {

@@ -23,7 +23,14 @@ const MySelect = (props) => {
     scrollTop();
   };
 
-  return <Select options={options} className="select" onChange={sort} />;
+  return (
+    <Select
+      options={options}
+      defaultValue={{ label: "Price: from highest", value: "desc" }}
+      className="select"
+      onChange={sort}
+    />
+  );
 };
 
 export default MySelect;
