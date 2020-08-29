@@ -6,9 +6,11 @@ a {
   width: 33.3333%;
   padding: 0 8px;
   transition: all 1s ease;
-  margin-bottom: 48px;
-  max-width: 410px;
+  margin-bottom: 15px;
   .card__content {
+    .photo {
+      min-height: 300px;
+    }
     .photo__img {
       width: 100%;
     }
@@ -16,6 +18,7 @@ a {
       display: flex;
       padding: 0.5rem 0;
       text-align: left;
+      margin-top: auto;
       &__price {
         text-align: left;
         margin-right: 10px;
@@ -41,8 +44,13 @@ a {
       padding: 0 0 0 4px;
     }
     .card__content {
+      .photo {
+        min-height: auto;
+      }
+
       .details {
         flex-direction: column;
+        font-size: 0.9rem;
         &__price,
         &__name {
           width: 100%;

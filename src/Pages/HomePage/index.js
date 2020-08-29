@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { AiOutlineFieldTime } from "react-icons/ai";
 import { FiPhoneCall, FiBox } from "react-icons/fi";
 import { MdFiberNew } from "react-icons/md";
+import list from "../../assets/nike20.json";
 
 const cards = [
   {
@@ -31,6 +32,17 @@ const cards = [
   },
 ];
 
+const getData = (start, end) => {
+  const data = [];
+  for (let i = start; i < end; i++) {
+    data.push(list[i]);
+  }
+  return data;
+};
+
+const bestSellers = getData(0, 7);
+const trading = getData(7, 14);
+
 const HomePage = (props) => {
   return (
     <div className="">
@@ -38,7 +50,7 @@ const HomePage = (props) => {
       <div className="carousel__wrapper">
         <h2 className="home__header p1 mt1">Trading</h2>
         <p className="home__subheader text--center">Top view this week</p>
-        <Carousel />
+        <Carousel list={trading} />
       </div>
 
       <div className="banner">
@@ -52,13 +64,13 @@ const HomePage = (props) => {
       <div className="carousel__wrapper">
         <h2 className="home__header p1 mt1">Best Sellers</h2>
         <p className="home__subheader text--center">Top sale this week</p>
-        <Carousel />
+        <Carousel list={bestSellers} />
       </div>
 
       <div className="cards__container">
         {cards.map((el, index) => (
-          <div className="card__wrapper">
-            <div className="card" key={index}>
+          <div className="card__wrapper" key={index}>
+            <div className="card">
               <div className="card__icon">{React.createElement(el.icon)}</div>
               <div className="card__desc">
                 <p className="card__header">{el.header}</p>

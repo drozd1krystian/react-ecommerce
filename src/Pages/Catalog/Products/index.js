@@ -40,7 +40,11 @@ const Products = (props) => {
       return loading
         ? Array(products.length || 10)
             .fill()
-            .map((_, id) => <SkeletonCard key={id} />)
+            .map((_, id) => (
+              <CSSTransition key={id} timeout={500} classNames="item">
+                <SkeletonCard key={id} />
+              </CSSTransition>
+            ))
         : products.map((el, index) => (
             <CSSTransition key={index} timeout={500} classNames="item">
               <Product key={index} product={el} />
@@ -58,7 +62,7 @@ const Products = (props) => {
       </TransitionGroup>
 
       {cards.length === 0 && (
-        <div className="height--full empty">
+        <div className="height--full products--empty">
           <h2 className=" p1 text--center">No products fullfill criteria</h2>
           <p className="icon--big text--center ">
             <FaRegSadTear />

@@ -9,6 +9,8 @@ import LoadingScreen from "../../components/LoadingScreen";
 import SizeRadioButton from "../../components/forms/SizeRadioButton";
 import NotFoundTempalte from "../../Templates/NotFoundTemplate/index";
 import Carousel from "../../components/Carousel";
+import { getProduct, getTrading } from "../../firebase/utils";
+import { ProductDeatilsCard } from "../../components/Skeletons/ProductDetailsCard";
 
 const mapState = ({ products }) => ({
   products: products.products,
@@ -20,7 +22,7 @@ const ProductDetails = (props) => {
   const dispatch = useDispatch();
   const [size, setSize] = useState(null);
   const [errors, setErrors] = useState([]);
-  const [similiarProducts, setSimiliarProducts] = useState([]);
+  const [trading, setTrading] = useState([]);
   const [notFound, setNotFound] = useState(false);
   const [product, setProduct] = useState({
     productId: null,
@@ -33,9 +35,14 @@ const ProductDetails = (props) => {
   });
 
   useEffect(() => {
-    const data = products.find((el) => el.productId === productId);
-    if (data === undefined) setNotFound(true);
-    else setProduct(data);
+    const getProductData = async () => {
+      const data =
+        products.find((el) => el.productId === productId) ||
+        (await getProduct(productId));
+      if (!data) setNotFound(true);
+      else setProduct(data);
+    };
+    getProductData();
   }, [productId, products, notFound, setNotFound]);
 
   const handleRadioInput = (e) => {
@@ -65,21 +72,13 @@ const ProductDetails = (props) => {
   };
 
   useEffect(() => {
-    const getFiveRandomProducts = () => {
-      let arr = [];
-      if (products.length > 0) {
-        for (let i = 0; i < 7; i++) {
-          let value = Math.floor(Math.random() * products.length);
-          if (!arr.includes(value)) arr.push(value);
-          else i--;
-        }
-      }
-      return arr;
+    const getData = async () => {
+      const data = await getTrading();
+      setTrading(data);
     };
 
-    let arr = getFiveRandomProducts();
-    setSimiliarProducts(arr.map((el) => products[el]));
-  }, [setSimiliarProducts, products]);
+    getData();
+  }, [setTrading]);
 
   return (
     <>
@@ -88,41 +87,46 @@ const ProductDetails = (props) => {
         <NotFoundTempalte type="Product" />
       ) : (
         <>
-          <div className="content">
-            <div className="images">
-              {product.images.map((el, index) => (
-                <div className="img" key={`img-${index}`}>
-                  <img src={el} alt={product.productName} />
-                </div>
-              ))}
-            </div>
-            <div className="description">
-              <h2 className="py2 field">{product.productName}</h2>
-              <span className="field">{product.salePrice} $</span>
-              <p className="py2 field">{product.description}</p>
-
-              <p className="field">Pick your size:</p>
-              <Error errors={errors} />
-              <div className="description__sizes mb2">
-                {product.sizes.map((el, index) => (
-                  <SizeRadioButton
-                    value={el}
-                    id={`size-${el}`}
-                    onClick={handleRadioInput}
-                    key={`radio-${index}`}
-                    label={el}
-                  />
+          {!product.productId ? (
+            <ProductDeatilsCard />
+          ) : (
+            <div className="content">
+              <div className="images">
+                {product.images.map((el, index) => (
+                  <div className="img" key={`img-${index}`}>
+                    <img src={el} alt={product.productName} />
+                  </div>
                 ))}
               </div>
-              <button
-                className="btn btn--light btn--round btn--slide"
-                onClick={handleAddProduct}
-              >
-                <span>Add to cart</span>
-              </button>
+              <div className="description">
+                <h2 className="py2 field">{product.productName}</h2>
+                <span className="field">{product.salePrice} $</span>
+                <p className="py2 field">{product.description}</p>
+
+                <p className="field">Pick your size:</p>
+                <Error errors={errors} />
+                <div className="description__sizes mb2">
+                  {product.sizes.map((el, index) => (
+                    <SizeRadioButton
+                      value={el}
+                      id={`size-${el}`}
+                      onClick={handleRadioInput}
+                      key={`radio-${index}`}
+                      label={el}
+                    />
+                  ))}
+                </div>
+                <button
+                  className="btn btn--light btn--round btn--slide"
+                  onClick={handleAddProduct}
+                >
+                  <span>Add to cart</span>
+                </button>
+              </div>
             </div>
-          </div>
-          <Carousel header="Similiar Products" />
+          )}
+
+          <Carousel header="You may also like" list={trading} />
         </>
       )}
     </>

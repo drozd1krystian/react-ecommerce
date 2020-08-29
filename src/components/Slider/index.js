@@ -54,7 +54,8 @@ const Slider = () => {
       timeoutRef.current = setTimeout(slide, TIMEOUT_DURATION);
 
       setIsAnimating(true);
-      setTimeout(() => setIsAnimating(false), 1000);
+      const animatingTimer = setTimeout(() => setIsAnimating(false), 1000);
+      clearTimeout(animatingTimer);
     };
 
     setSlideTimeout();

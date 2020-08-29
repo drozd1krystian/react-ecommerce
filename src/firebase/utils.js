@@ -96,6 +96,56 @@ export const getProducts = (options) => {
   });
 };
 
+export const getProduct = (id) => {
+  return new Promise((resolve, reject) => {
+    const productsRef = firestore.collection("products");
+
+    productsRef
+      .where("productId", "==", id)
+      .limit(1)
+      .get()
+      .then((snapshot) => {
+        if (!snapshot.empty) resolve(snapshot.docs[0].data());
+        else resolve(false);
+      })
+      .catch((e) => console.log(e));
+  });
+};
+
+export const getTrading = () => {
+  return new Promise((resolve, reject) => {
+    const productsRef = firestore.collection("products");
+    const products = [];
+
+    productsRef
+      .where("brand", "==", "Nike")
+      .limit(7)
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((doc) => products.push(doc.data()));
+        resolve(products);
+      })
+      .catch((e) => console.log(e));
+  });
+};
+
+export const getTopProducts = () => {
+  return new Promise((resolve, reject) => {
+    const productsRef = firestore.collection("products");
+    const products = [];
+
+    productsRef
+      .orderBy("rating", "desc")
+      .limit(7)
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((doc) => products.push(doc.data()));
+        resolve(products);
+      })
+      .catch((e) => console.log(e));
+  });
+};
+
 export const checkOutUser = (order, userId) => {
   const ordersRef = firestore
     .collection("users")

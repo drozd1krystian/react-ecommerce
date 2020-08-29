@@ -55,6 +55,7 @@ const productsReducer = (state = INITIAL_STATE, action) => {
     case productsTypes.CHANGE_FILTER_TYPE: {
       return {
         ...state,
+        products: action.payload === "filter" ? [] : [...state.products],
         filters: {
           ...state.filters,
           type: action.payload,
