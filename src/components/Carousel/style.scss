@@ -75,3 +75,9 @@
     min-width: 30%;
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .carousel .card {
+    padding: 0 4px;
+  }
+}

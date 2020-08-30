@@ -3,3 +3,9 @@
   height: 400px;
   background: #eee;
 }
+
+@media screen and (max-width: 767px) {
+  .photo--default {
+    height: 200px;
+  }
+}

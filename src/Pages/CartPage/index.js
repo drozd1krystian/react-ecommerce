@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./style.scss";
 
 import { useSelector } from "react-redux";
-import emptyCart from "../../assets/emptyCart.png";
+import emptyCart from "../../assets/images/emptyCart.png";
 import FullCartItem from "../../components/FullCartItem";
 import LoadingScreen from "../../components/LoadingScreen";
 

@@ -37,7 +37,7 @@ export const ProductDeatilsCard = () => {
           {Array(6)
             .fill()
             .map((_, index) => (
-              <Skeleton width={`33.333%`} height={50} key={index} />
+              <Skeleton width={`100%`} height={50} key={index} />
             ))}
         </div>
         <Skeleton width={`100%`} height={50} />

@@ -32,7 +32,7 @@
 .banner {
   height: 400px;
   margin-top: 50px;
-  background: url("../../assets/ad.jpg") no-repeat;
+  background: url("../../assets/images/ad.jpg") no-repeat center center/cover;
   width: 100%;
 
   display: flex;
@@ -129,5 +129,11 @@
     .card {
       margin-bottom: 10px;
     }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .cards__container .card__wrapper {
+    width: 50%;
   }
 }

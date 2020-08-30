@@ -193,11 +193,13 @@
     background: $secondary-color;
     z-index: 1000;
     width: 100%;
+    .link {
+      color: #333;
+    }
 
     .link__wrapper {
       width: 100%;
       border-bottom: 1px solid lighten($primary-color, 60%);
-
       .link--current::before {
         display: none;
       }
