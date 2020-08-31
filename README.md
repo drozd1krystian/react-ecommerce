@@ -6,11 +6,15 @@ E-commerce project made with React and Firestore for self learning.
 
 ## Demo
 
-![Site Preview](https://nikefan-ecommerce.netlify.app/)
+https://nikefan-ecommerce.netlify.app/
+
+You can log in as an user:
+Login: user123@user.com
+Password: user123
 
 ## Technologies
 
-Backend: Firebase + Firestore
+Backend: Firebase + Firestore (hosted by https://firebase.google.com/)
 
 Frontend: (hosted by www.netlify.com)
 

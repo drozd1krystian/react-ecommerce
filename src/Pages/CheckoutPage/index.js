@@ -45,6 +45,7 @@ const CheckoutPage = (props) => {
       ? cart
           .map((el) => el.amount * el.salePrice)
           .reduce((acc, current) => acc + current)
+          .toFixed(2)
       : 0;
 
   const handleSubmit = (e) => {

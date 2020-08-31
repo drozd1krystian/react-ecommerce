@@ -116,7 +116,7 @@ const SignUp = (props) => {
           <FormInput
             label="Postal Code"
             required
-            pattern="[0-9]*"
+            pattern="[0-9]{2}\-[0-9]{3}"
             value={postCode}
             handleChange={(e) => setPostCode(e.target.value)}
             placeholder=" "
