@@ -1,5 +1,9 @@
 @import "../../assets/variables";
 
+.details__content {
+  display: flex;
+}
+
 .images {
   width: 70%;
   padding: 2rem 2rem;

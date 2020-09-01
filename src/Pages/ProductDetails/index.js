@@ -90,7 +90,7 @@ const ProductDetails = (props) => {
           {!product.productId ? (
             <ProductDeatilsCard />
           ) : (
-            <div className="content">
+            <div className="content details__content ptop">
               <div className="images">
                 {product.images.map((el, index) => (
                   <div className="img" key={`img-${index}`}>

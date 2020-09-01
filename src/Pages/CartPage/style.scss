@@ -1,4 +1,10 @@
 @import "../../assets/variables";
+
+.cart__content {
+  display: flex;
+  width: 100%;
+}
+
 .content {
   .summary,
   .cart__items {
@@ -62,14 +68,16 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .content .summary {
-    order: -1;
-  }
-
-  .content {
+  .cart__content {
+    flex-direction: column;
     .summary,
     .cart__items {
       width: 100%;
+    }
+  }
+  .empty__cart {
+    img {
+      max-width: 200px;
     }
   }
 }

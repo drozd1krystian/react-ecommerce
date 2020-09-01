@@ -28,16 +28,20 @@ const CartPage = (props) => {
   }, [setCartValue, cart]);
 
   return (
-    <div className="height--full">
+    <div className="height--full ptop">
       <LoadingScreen />
 
       {cart.length > 0 && (
-        <div className="content">
+        <div className="content cart__content">
           <div className="cart__items">
             <h2 className=" text--center p1">Cart</h2>
 
             {cart.map((item, index) => (
-              <FullCartItem product={item} key={item.productId} index={index} />
+              <FullCartItem
+                product={item}
+                key={`${index}-${item.productId}`}
+                index={index}
+              />
             ))}
           </div>
           <div className="summary">
@@ -57,10 +61,10 @@ const CartPage = (props) => {
                 <span>Total</span>
                 <span>{cartValue.toFixed(2)} $</span>
               </div>
+              <Link to="/checkout">
+                <Button>Check Out</Button>
+              </Link>
             </div>
-            <Link to="/checkout">
-              <Button>Check Out</Button>
-            </Link>
           </div>
         </div>
       )}

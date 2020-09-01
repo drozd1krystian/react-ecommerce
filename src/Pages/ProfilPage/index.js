@@ -36,7 +36,7 @@ const ProfilPage = (props) => {
   }, [currentUser]);
 
   return (
-    <div className="column">
+    <div className="column ptop">
       {!currentUser && <Redirect to="/" />}
       {orders.length === 0 && loading && (
         <div className="orders">

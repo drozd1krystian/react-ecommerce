@@ -48,8 +48,8 @@ const Cart = (props) => {
         <div className="data__container">
           <h2 className="p1 text--center">Basket</h2>
           <div className="cart">
-            {cart.map((el) => (
-              <CartItem product={el} key={el.productId} />
+            {cart.map((el, index) => (
+              <CartItem product={el} key={`${index}-${el.productId}`} />
             ))}
           </div>
 

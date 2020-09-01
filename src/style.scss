@@ -24,7 +24,13 @@ a {
 }
 
 .height--full {
-  min-height: calc(100vh - 400px);
+  min-height: calc(100vh - 350px);
+  display: flex;
+  align-items: center;
+}
+
+.ptop {
+  padding-top: 70px;
 }
 
 .heading {

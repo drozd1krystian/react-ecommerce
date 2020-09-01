@@ -44,7 +44,7 @@ const SignIn = (props) => {
   };
 
   return (
-    <div className="page">
+    <div className="signin">
       <form className="form" onSubmit={handleSubmit}>
         <h2 className="p1 text--center mb1 ">Sign In</h2>
         <FormInput

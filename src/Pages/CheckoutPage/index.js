@@ -68,7 +68,7 @@ const CheckoutPage = (props) => {
   }, [cart, history]);
 
   return (
-    <div className="column">
+    <div className="ptop">
       <Loading />
       <div className="steps">
         <div className="step">
@@ -170,13 +170,13 @@ const CheckoutPage = (props) => {
               <BsBag /> Cart Summary
             </h3>
             <div className="summary__items">
-              {cart.map((el) => (
-                <CheckoutItem product={el} key={el.productId} />
+              {cart.map((el, index) => (
+                <CheckoutItem product={el} key={`${index}-${el.productId}`} />
               ))}
             </div>
             <div className="summary__total text__bold">
               <span>Subtotal: </span>
-              <span>${cartTotal.toFixed(2)}</span>
+              <span>${cartTotal}</span>
             </div>
           </div>
         </div>

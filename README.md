@@ -6,11 +6,11 @@ E-commerce project made with React and Firestore for self learning.
 
 ## Demo
 
-https://nikefan-ecommerce.netlify.app/
-
 You can log in as an user:
 Login: user123@user.com
 Password: user123
+
+demo: https://nikefan-ecommerce.netlify.app/
 
 ## Technologies
 
